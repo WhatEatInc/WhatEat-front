@@ -1,11 +1,19 @@
-const express = require('express')
-const app = express()
+import logo from './logo.svg';
+import './App.css';
 
-app.get('/', (req, res) => {
-    res.json({
-        message: 'Hello World',
-        version: '1.0.0'
-    })
-})
+function App() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Guys you won't believe me....</p>
+          <p>
+          It is WORKING :D
+        </p>
+      </header>
+    </div>
+  );
+}
 
-module.exports = app
+export default App;
