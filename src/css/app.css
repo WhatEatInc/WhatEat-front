@@ -1,0 +1,23 @@
+/**
+* Normalize.css
+*/
+@import url("https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.css");
+
+/**
+* Google Fonts
+*/
+@import url('https://fonts.googleapis.com/css2?family=Cabin&family=Ubuntu&display=swap');
+
+/**
+* Base styles
+*/
+@import "./base/variables.css";
+@import "./base/layout.css";
+@import "./base/typography.css";
+
+/**
+* Components
+*/
+@import "./components/footer.css";
+@import "./components/header.css";
+@import "./components/main.css";

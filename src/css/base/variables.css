@@ -1,0 +1,19 @@
+/**
+* Font
+*/
+
+:root {
+    --font-family-content: 'Cabin', sans-serif;
+    --font-family-headings: 'Ubuntu', sans-serif;
+    --font-color: #000;
+    --font-size-base: 16px;
+}
+
+/**
+* Color
+*/
+
+:root {
+    --color-primary: #27ae60;
+    --color-light-gray: #ecf0f1;
+}
