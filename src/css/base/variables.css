@@ -1,0 +1,10 @@
+/**
+* Font
+*/
+
+:root {
+    --font-family-content: 'Open Sans', sans-serif;
+    --font-family-headings: 'Roboto Slab', serif;
+    --font-color: #000;
+    --font-size-base: 16px;
+}
