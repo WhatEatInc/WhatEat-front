@@ -1,8 +1,6 @@
-import { Link } from 'react-router-dom'
-
 function Header() {
     return (
-        <header>
+        <header className="header">
             <h1>🍎 WhatEat</h1>
         </header>
     )

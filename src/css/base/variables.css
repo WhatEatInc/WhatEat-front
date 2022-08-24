@@ -8,3 +8,12 @@
     --font-color: #000;
     --font-size-base: 16px;
 }
+
+/**
+* Color
+*/
+
+:root {
+    --color-primary: #27ae60;
+    --color-light-gray: #ecf0f1;
+}

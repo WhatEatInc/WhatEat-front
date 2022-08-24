@@ -14,3 +14,9 @@
 @import "./base/variables.css";
 @import "./base/layout.css";
 @import "./base/typography.css";
+
+/**
+* Components
+*/
+@import "./components/footer.css";
+@import "./components/header.css";

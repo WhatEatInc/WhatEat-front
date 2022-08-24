@@ -12,8 +12,9 @@ root.render(
     <Header />
     <main>
       <Routes>
-        <Route path="/" element={<h1>/</h1>} />
-        <Route path="/test" element={<h1>test</h1>} />
+        <Route path="/" element={<h1>Root</h1>} />
+        <Route path="/today" element={<h1>Today</h1>} />
+        <Route path="/settings" element={<h1>Settings</h1>} />
       </Routes>
     </main>
     <Footer />
