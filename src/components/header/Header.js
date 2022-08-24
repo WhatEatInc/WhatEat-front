@@ -1,7 +1,9 @@
+import Logo from '../../images/logo-horizontal.svg'
+
 function Header() {
     return (
         <header className="header">
-            <h1>🍎 WhatEat</h1>
+            <img className='header-logo' src={Logo}  alt="WhatEat logo"/>
         </header>
     )
 }
