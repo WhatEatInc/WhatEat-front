@@ -3,8 +3,8 @@
 */
 
 :root {
-    --font-family-content: 'Open Sans', sans-serif;
-    --font-family-headings: 'Roboto Slab', serif;
+    --font-family-content: 'Cabin', sans-serif;
+    --font-family-headings: 'Ubuntu', sans-serif;
     --font-color: #000;
     --font-size-base: 16px;
 }
