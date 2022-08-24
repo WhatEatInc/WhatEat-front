@@ -1,28 +1,33 @@
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome, faUtensils, faUser } from '@fortawesome/free-solid-svg-icons'
 
 
 function Footer() {
+
+    function getClassName({ isActive }) {
+        return isActive ? 'footer-link footer-link-active' : 'footer-link'
+    }
+
     return (
         <footer className="footer">
             <menu className='footer-menu'>
                 <nav className='footer-nav'>
                     <ul className='footer-list'>
                         <li className='footer-item'>
-                            <Link to='/' className='footer-link'>
+                            <NavLink to='/' className={getClassName}>
                                 <FontAwesomeIcon icon={faHome} />
-                            </Link>
+                            </NavLink>
                         </li>
                         <li className='footer-item'>
-                            <Link to='/today' className='footer-link footer-link-active'>
+                            <NavLink to='/today' className={getClassName}>
                                 <FontAwesomeIcon icon={faUtensils} />
-                            </Link>
+                            </NavLink>
                         </li>
                         <li className='footer-item'>
-                            <Link to='/settings' className='footer-link'>
+                            <NavLink to='/settings' className={getClassName}>
                                 <FontAwesomeIcon icon={faUser} />
-                            </Link>
+                            </NavLink>
                         </li>
                     </ul>
                 </nav>
