@@ -3,7 +3,7 @@ import User from '../components/settings/User'
 import Allergens from '../components/settings/Allergens'
 import Particularities from '../components/settings/Particularities'
 import Cooktype from '../components/settings/Cooktype'
-import Cooktime from '../components/settings/Cooktime'
+import Duration from '../components/settings/Duration'
 import Health from '../components/settings/Health'
 import Error from '../components/error/Error'
 
@@ -37,7 +37,7 @@ class Settings extends React.Component {
                 <Allergens onError={this.onError}/>
                 <Particularities onError={this.onError} />
                 <Cooktype onError={this.onError} />
-                <Cooktime />
+                <Duration onError={this.onError}/>
                 <Health/>
                 </>
         )}

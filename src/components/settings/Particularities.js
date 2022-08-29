@@ -16,9 +16,7 @@ class Particularities extends React.Component {
     }
 
     componentDidMount() {
-        this.setState({
-            particularity: this.fetchParticularity(),
-        })
+        this.fetchParticularity()
     }
 
     async fetchParticularity() {
@@ -32,7 +30,9 @@ class Particularities extends React.Component {
                         'label': label
                     })
                 }
-                this.setState({particularity: particularity})
+                this.setState({
+                    particularity: particularity,
+                })
             })
             .catch(error => this.props.onError())
     }

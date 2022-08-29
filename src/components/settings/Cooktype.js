@@ -16,9 +16,7 @@ class Cooktype extends React.Component {
     }
 
     componentDidMount() {
-        this.setState({
-            cookType: this.fetchCookType(),
-        })
+        this.fetchCookType()
     }
 
     async fetchCookType() {

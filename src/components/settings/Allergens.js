@@ -16,9 +16,7 @@ class Allergens extends React.Component {
     }
 
     componentDidMount() {
-        this.setState({
-            allergens: this.fetchAllergens(),
-        })
+        this.fetchAllergens()
     }
 
     async fetchAllergens() {
