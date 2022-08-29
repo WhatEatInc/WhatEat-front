@@ -40,14 +40,14 @@ class Cooktype extends React.Component {
     render() {
         return (
             <>
-            <h2>Favorite kitchen</h2>
-            <Select
-            closeMenuOnSelect={false}
-            components={animatedComponents}
-            isMulti
-            options={this.state.cookType}
-            />
-        </>
+                <h2>Favorite kitchen</h2>
+                <Select
+                closeMenuOnSelect={false}
+                components={animatedComponents}
+                isMulti
+                options={this.state.cookType}
+                />
+            </>
         )
     }
 
