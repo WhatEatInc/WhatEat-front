@@ -31,7 +31,7 @@ class Today extends React.Component {
 
     render() {
         return (
-        <p>{JSON.stringify(this.state.today)} - Coucou</p>
+        <p>{JSON.stringify(this.state.today)}</p>
     )}
 }
 
