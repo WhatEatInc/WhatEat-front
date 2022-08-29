@@ -11,3 +11,18 @@ body, html {
     flex-direction: column;
     height: 100%;
 }
+
+.main {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: var(--spacing-base);
+}
+
+.main::-webkit-scrollbar {
+    display: none;
+}
+
+.main {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}

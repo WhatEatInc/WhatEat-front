@@ -17,3 +17,13 @@
     --color-primary: #27ae60;
     --color-light-gray: #ecf0f1;
 }
+
+/**
+* Spacing
+*/
+
+:root {
+    --spacing-base: 16px;
+    --spacing-large: 24px;
+    --spacing-small: 8px;
+}
