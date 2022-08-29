@@ -34,7 +34,7 @@ class Settings extends React.Component {
                 <>
                 <h1>Settings</h1>
                 <User />
-                <Allergens />
+                <Allergens onError={this.onError}/>
                 <Particularities onError={this.onError} />
                 <Cooktype onError={this.onError} />
                 <Cooktime />
