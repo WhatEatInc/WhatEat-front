@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom/client'
 import Header from './components/header/Header'
 import Footer from './components/footer/Footer'
 import Today from './pages/Today'
+import Settings from './pages/Settings'
 
 import './css/app.css'
 
@@ -15,7 +16,7 @@ root.render(
       <Routes>
         <Route path="/" element={<h1>Root</h1>} />
         <Route path="/today" element={<Today />} />
-        <Route path="/settings" element={<h1>Settings</h1>} />
+        <Route path="/settings" element={<Settings />} />
       </Routes>
     </main>
     <Footer />
