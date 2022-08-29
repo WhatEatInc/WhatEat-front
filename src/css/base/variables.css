@@ -15,6 +15,7 @@
 
 :root {
     --color-primary: #27ae60;
+    --color-secondary: #aaaaaa;
     --color-light-gray: #ecf0f1;
 }
 
@@ -26,4 +27,14 @@
     --spacing-base: 16px;
     --spacing-large: 24px;
     --spacing-small: 8px;
+}
+
+/**
+* Radius
+*/
+
+:root {
+    --radius-base: 8px;
+    --radius-large: 16px;
+    --radius-small: 4px;
 }

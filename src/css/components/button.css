@@ -1,0 +1,14 @@
+.btn {
+    text-decoration: none;
+    border: 1px solid;
+    padding: var(--spacing-small) var(--spacing-base);
+    border-radius: var(--radius-small);
+}
+
+.btn-primary {
+    color: var(--color-primary);
+}
+
+.btn-secondary {
+    color: var(--color-secondary);
+}
