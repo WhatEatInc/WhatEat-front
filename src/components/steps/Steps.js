@@ -10,10 +10,10 @@ class Steps extends React.Component {
     mapSteps() {
         return this.props.steps.map((step, index) => {
             return (
-                <>
-                    <h3 className="page-title">Step {step.number}</h3>
+                <div key={index + "-step"} className="steps-step">
+                    <h3  className="page-title">Step {step.number}</h3>
                     <p>{step.step}</p>
-                </>
+                </div>
             )
         })
     }
