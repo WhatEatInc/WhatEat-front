@@ -53,7 +53,7 @@ class Today extends React.Component {
                 incrementCounter={this.incrementCounter}
                 counter={this.state.counter}
             />
-            <Button onClick={this.reroll} type="primary" className="btn-full">
+            <Button onClick={this.reroll} type="primary" className="btn-full btn-big">
                 <FontAwesomeIcon icon={faDice} /> Reroll
             </Button>
         </>

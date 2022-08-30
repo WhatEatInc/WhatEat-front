@@ -17,3 +17,7 @@
 .btn-full {
     width: 100%;
 }
+
+.btn-big {
+    padding: var(--spacing-base) var(--spacing-large);
+}
