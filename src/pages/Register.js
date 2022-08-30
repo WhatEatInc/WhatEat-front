@@ -24,9 +24,20 @@ class Register extends React.Component {
   handleChangeFName(event) {    this.setState({fName: event.target.value});  }
   handleChangeLName(event) {    this.setState({lName: event.target.value});  }
   handleChangeEmail(event) {    this.setState({email: event.target.value});  }
-  handleChangePass(event) {    this.setState({pass: event.target.value});  }
+  handleChangePass(event) {     this.setState({pass: event.target.value});  }
   handleChangeConfirm(event) {    this.setState({confirm: event.target.value});  }
+
   handleSubmit(event) {
+      if(!validateEmail(this.state.email)){
+        console.log("error!")
+        return false;
+      }
+
+      if(!validatePassword(this.state.pass)){
+        console.log("error!")
+        return false;
+      }
+
     // Simple POST request with a JSON body using fetch
     const requestOptions = {
       method: 'POST',
@@ -54,7 +65,6 @@ class Register extends React.Component {
       event.preventDefault();
     }
   }
-
 
 
     render() {   
@@ -85,5 +95,23 @@ class Register extends React.Component {
 )}
 }
 
+
+function validateEmail(email) {
+  const res = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return res.test(String(email).toLowerCase());
+}
+
+function validatePassword(password){
+  var decimal=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,55}$/;
+  if(password.match(decimal)) 
+  {
+    return true;
+    }
+    else
+    { 
+    alert('Wrong...!')
+    return false;
+    }
+    } 
 
 export default Register 
