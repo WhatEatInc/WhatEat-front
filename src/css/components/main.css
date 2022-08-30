@@ -1,3 +1,11 @@
 .main {
-    height: calc(10 * (100% / 12));
+    height: calc(11 * (100% / 13));
+}
+
+.main > * {
+    margin-bottom: var(--spacing-base);
+}
+
+.main > *:last-child {
+    margin-bottom: 0;
 }

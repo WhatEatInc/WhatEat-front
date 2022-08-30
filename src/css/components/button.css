@@ -1,0 +1,27 @@
+.btn {
+    text-decoration: none;
+    border: 1px solid;
+    padding: var(--spacing-small) var(--spacing-base);
+    border-radius: var(--radius-small);
+    background-color: transparent;
+}
+
+.btn-primary {
+    color: var(--color-primary);
+}
+
+.btn-secondary {
+    color: var(--color-secondary);
+}
+
+.btn-full {
+    width: 100%;
+}
+
+.btn-big {
+    padding: var(--spacing-base) var(--spacing-large);
+}
+
+.btn-icon {
+    margin-right: var(--spacing-small);
+}
