@@ -11,7 +11,8 @@ class Register extends React.Component {
       email: "",
       pass: "",
       confirm: "",
-      postId: null
+      token: null,
+      data: null
     };
     this.handleChangeFName = this.handleChangeFName.bind(this);
     this.handleChangeLName = this.handleChangeLName.bind(this);
@@ -21,20 +22,21 @@ class Register extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChangeFName(event) {    this.setState({fName: event.target.value});  }
-  handleChangeLName(event) {    this.setState({lName: event.target.value});  }
-  handleChangeEmail(event) {    this.setState({email: event.target.value});  }
-  handleChangePass(event) {     this.setState({pass: event.target.value});  }
-  handleChangeConfirm(event) {    this.setState({confirm: event.target.value});  }
+
+  handleChangeFName(event)   {    this.setState({fName: event.target.value});  }
+  handleChangeLName(event)   {    this.setState({lName: event.target.value});  }
+  handleChangeEmail(event)   {    this.setState({email: event.target.value});  }
+  handleChangePass(event)    {    this.setState({pass: event.target.value});   }
+  handleChangeConfirm(event) {    this.setState({confirm: event.target.value});}
 
   handleSubmit(event) {
       if(!validateEmail(this.state.email)){
-        console.log("error!")
+        document.getElementById("err").innerHTML = "The email is not valid!";
         return false;
       }
 
       if(!validatePassword(this.state.pass)){
-        console.log("error!")
+        document.getElementById("err").innerHTML = "The passwords didn't match!!";
         return false;
       }
 
@@ -51,17 +53,19 @@ class Register extends React.Component {
     }
 
     if(this.state.pass === this.state.confirm){
-      console.log('A name was submitted: ' + this.state.email + "/" +this.state.fName + "/" + this.state.lName);
-      console.log(requestOptions);
       fetch(apiConfig.url + "/v0/user/register", requestOptions)
-        .then(response => response.json())
-        .then(data => {
-          console.log(data)
+        .then(response => {
+          
+          if(response.ok){
+            this.state.data = response.json()
+            console.log(this.state.data)
+          }
         })
+        
       event.preventDefault();
     }
     else{
-      console.log("The passwords didn't match!!");
+      document.getElementById("err").innerHTML = "The passwords didn't match!!"; 
       event.preventDefault();
     }
   }
@@ -69,29 +73,31 @@ class Register extends React.Component {
 
     render() {   
         return(
-      <form onSubmit={this.handleSubmit}>
-      <label>
-    First Name:
-    <input type="text" name="fName" placeholder="put your first name here" value={this.state.fName} onChange={this.handleChangeFName} required/>
-    </label>
-    <label>
-    Last Name:
-    <input type="text" name="lName" placeholder="put your last name here" value={this.state.lName} onChange={this.handleChangeLName} required/>
-    </label>
-  <label>
-    Email:
-    <input type="text" name="email" placeholder="put your email here" value={this.state.email} onChange={this.handleChangeEmail} required/>
-    </label>
-    <label>
-        Password:
-  <input type="text" value={this.state.pass} onChange={this.handleChangePass} required/>
-  </label>
-  <label>
-        Confirm Password:
-  <input type="text" value={this.state.confirm} onChange={this.handleChangeConfirm} required/>
-  </label>
-    <input type="submit" value="Submit" />
-</form>
+          <form onSubmit={this.handleSubmit}>
+              <label>
+                First Name:
+                <input type="text" name="fName" placeholder="put your first name here" value={this.state.fName} onChange={this.handleChangeFName} required/>
+              </label>
+              <label>
+                Last Name:
+                <input type="text" name="lName" placeholder="put your last name here" value={this.state.lName} onChange={this.handleChangeLName} required/>
+              </label>
+              <label>
+                Email:
+                <input type="text" name="email" placeholder="put your email here" value={this.state.email} onChange={this.handleChangeEmail} required/>
+              </label>
+              <label>
+                Password:
+                <input type="text" value={this.state.pass} onChange={this.handleChangePass} required/>
+              </label>
+              <label>
+                Confirm Password:
+                <input type="text" value={this.state.confirm} onChange={this.handleChangeConfirm} required/>
+              </label>
+                <input type="submit" value="Submit" />
+              <div id="err"></div>
+          </form>
+          
 )}
 }
 
@@ -115,3 +121,4 @@ function validatePassword(password){
     } 
 
 export default Register 
+
