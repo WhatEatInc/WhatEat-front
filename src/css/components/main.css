@@ -1,5 +1,5 @@
 .main {
-    height: calc(10 * (100% / 12));
+    height: calc(11 * (100% / 13));
 }
 
 .main > * {
