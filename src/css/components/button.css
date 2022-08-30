@@ -3,6 +3,7 @@
     border: 1px solid;
     padding: var(--spacing-small) var(--spacing-base);
     border-radius: var(--radius-small);
+    background-color: transparent;
 }
 
 .btn-primary {
@@ -11,4 +12,8 @@
 
 .btn-secondary {
     color: var(--color-secondary);
+}
+
+.btn-full {
+    width: 100%;
 }

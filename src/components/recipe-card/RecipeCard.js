@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faDownload } from '@fortawesome/free-solid-svg-icons'
 
 class RecipeCard extends React.Component {
-
     render() {
 
         const { recipe } = this.props

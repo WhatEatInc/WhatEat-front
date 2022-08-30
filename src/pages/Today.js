@@ -1,7 +1,11 @@
 
 import React from "react"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faDice } from "@fortawesome/free-solid-svg-icons"
+
 import RecipeCard from "../components/recipe-card/RecipeCard"
 import Counter from "../components/counter/Counter"
+import Button from "../components/button/Button"
 
 class Today extends React.Component {
 
@@ -20,6 +24,7 @@ class Today extends React.Component {
         }
         this.decrementCounter = this.decrementCounter.bind(this)
         this.incrementCounter = this.incrementCounter.bind(this)
+        this.reroll = this.reroll.bind(this)
     }
 
     decrementCounter() {
@@ -34,6 +39,10 @@ class Today extends React.Component {
         })
     }
 
+    reroll() {
+        alert("Reroll")
+    }
+
     render() {
         return (
         <>
@@ -44,9 +53,12 @@ class Today extends React.Component {
                 incrementCounter={this.incrementCounter}
                 counter={this.state.counter}
             />
-            
+            <Button onClick={this.reroll} type="primary" className="btn-full">
+                <FontAwesomeIcon icon={faDice} /> Reroll
+            </Button>
         </>
-    )}
+        )
+    }
 }
 
 export default Today
