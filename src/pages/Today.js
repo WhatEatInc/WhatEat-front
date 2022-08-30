@@ -46,7 +46,7 @@ class Today extends React.Component {
     render() {
         return (
         <>
-            <h1>Today</h1>
+            <h1 className="page-title">Today</h1>
             <RecipeCard recipe={this.state.recipe} />
             <Counter 
                 decrementCounter={this.decrementCounter}
