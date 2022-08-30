@@ -19,18 +19,22 @@ class Allergens extends React.Component {
         this.fetchAllergens()
     }
 
+    buildAllergens(data) {
+        const allergens = []
+        for (const [value, label] of Object.entries(data)) { 
+            allergens.push({
+                'value': value,
+                'label': label
+            })
+        }
+        return allergens
+    }
+
     async fetchAllergens() {
         fetch(apiConfig.url + '/v0/recipe/getAllergen')
             .then(response => response.json())
             .then(data => {
-                const allergens = []
-                for (const [value, label] of Object.entries(data.Allergen)) { 
-                    allergens.push({
-                        'value': value,
-                        'label': label
-                    })
-                }
-                this.setState({allergens: allergens})
+                this.setState({allergens: this.buildAllergens(data.Allergen)})
             })
             .catch(error => this.props.onError())
     }
@@ -41,6 +45,7 @@ class Allergens extends React.Component {
                 <h2>Allergens</h2>
                 <Select
                 closeMenuOnSelect={false}
+                defaultValue={this.buildAllergens(this.props.allergens)}
                 components={animatedComponents}
                 isMulti
                 options={this.state.allergens}

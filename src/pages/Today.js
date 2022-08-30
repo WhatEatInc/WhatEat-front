@@ -9,6 +9,7 @@ class Today extends React.Component {
             today: null,
         }
         this.fetchData = this.fetchData.bind(this)
+        this.onError = this.onError.bind(this)
     }
 
     componentDidMount() {

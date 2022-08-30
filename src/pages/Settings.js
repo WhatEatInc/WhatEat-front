@@ -13,7 +13,8 @@ class Settings extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            hasError: false
+            hasError: false,
+            preferences: null
         }
         this.onError = this.onError.bind(this)
     }
@@ -23,12 +24,12 @@ class Settings extends React.Component {
     }
 
     async fetchPreferences() {
-        fetch(apiConfig.url + '/v0/recipe/getCookType')
+        fetch(apiConfig.url + '/v0/user/getPreferences')
             .then(response => response.json())
             .then(data => {
-                console.log(data)
+                this.setState({preferences: data})
             })
-            .catch(error => this.props.onError())
+            .catch(error => this.onError())
     }
 
     onError() {
@@ -39,19 +40,27 @@ class Settings extends React.Component {
 
     render() {
         
+        if(this.state.preferences === null) {
+            return
+        }
+
         if(this.state.hasError) {
             return (
                 <Error />
             )
         } else {
+            
+            const {firstname, lastname } = this.state.preferences
+            const {allergens, particularities, cookTypes, duration} = this.state.preferences.cook
+
             return (
                 <>
                 <h1>Settings</h1>
-                <User />
-                <Allergens onError={this.onError} />
-                <Particularities onError={this.onError} />
-                <Cooktype onError={this.onError} />
-                <Duration onError={this.onError} />
+                <User lastname={lastname} firstname={firstname}/>
+                <Allergens allergens={allergens} onError={this.onError} />
+                <Particularities particularities={particularities} onError={this.onError} />
+                <Cooktype cookTypes={cookTypes} onError={this.onError} />
+                <Duration duration={duration} onError={this.onError} />
                 <Health/>
                 </>
         )}
