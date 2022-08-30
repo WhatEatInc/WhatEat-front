@@ -16,10 +16,10 @@ class RecipeCard extends React.Component {
                 </div>
                 <div className="recipe-card-actions">
                     <a className="btn btn-primary" href={recipe.url}>
-                        <FontAwesomeIcon icon={faPlus} /> Read more
+                        <FontAwesomeIcon icon={faPlus} className="btn-icon" /> Read more
                     </a>
                     <a className="btn btn-secondary" href={recipe.download}>
-                        <FontAwesomeIcon icon={faDownload} /> Download
+                        <FontAwesomeIcon icon={faDownload} className="btn-icon" /> Download
                     </a>
                 </div>
             </div>

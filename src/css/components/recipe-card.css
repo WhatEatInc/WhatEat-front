@@ -35,3 +35,10 @@
 .recipe-card-content > *:first-child {
     margin-bottom: var(--spacing-small);
 }
+
+.recipe-card-actions > * {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
