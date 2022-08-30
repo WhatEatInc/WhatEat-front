@@ -14,7 +14,7 @@ class Settings extends React.Component {
         super(props)
         this.state = {
             hasError: false,
-            preferences: null
+            user: null
         }
         this.onError = this.onError.bind(this)
     }
@@ -27,7 +27,7 @@ class Settings extends React.Component {
         fetch(apiConfig.url + '/v0/user/getPreferences')
             .then(response => response.json())
             .then(data => {
-                this.setState({preferences: data})
+                this.setState({user: data})
             })
             .catch(error => this.onError())
     }
@@ -40,7 +40,7 @@ class Settings extends React.Component {
 
     render() {
         
-        if(this.state.preferences === null) {
+        if(this.state.user === null) {
             return
         }
 
@@ -49,9 +49,9 @@ class Settings extends React.Component {
                 <Error />
             )
         } else {
-            
-            const {firstname, lastname } = this.state.preferences
-            const {allergens, particularities, cookTypes, duration, health} = this.state.preferences.cook
+
+            const {firstname, lastname } = this.state.user
+            const {allergens, particularities, cookTypes, duration, health} = this.state.user.preferences
 
             return (
                 <>

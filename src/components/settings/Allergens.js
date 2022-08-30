@@ -31,10 +31,10 @@ class Allergens extends React.Component {
     }
 
     async fetchAllergens() {
-        fetch(apiConfig.url + '/v0/recipe/getAllergen')
+        fetch(apiConfig.url + '/v0/recipe/getAllergens')
             .then(response => response.json())
             .then(data => {
-                this.setState({allergens: this.buildAllergens(data.Allergen)})
+                this.setState({allergens: this.buildAllergens(data.allergens)})
             })
             .catch(error => this.props.onError())
     }

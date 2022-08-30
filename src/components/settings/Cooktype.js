@@ -31,10 +31,10 @@ class Cooktype extends React.Component {
     }
 
     async fetchCookType() {
-        fetch(apiConfig.url + '/v0/recipe/getCookType')
+        fetch(apiConfig.url + '/v0/recipe/getCookTypes')
             .then(response => response.json())
             .then(data => {
-                this.setState({cookType: this.buildCookType(data.CookType)})
+                this.setState({cookType: this.buildCookType(data.cookTypes)})
             })
             .catch(error => this.props.onError())
     }

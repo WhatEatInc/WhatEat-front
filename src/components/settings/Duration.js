@@ -20,7 +20,7 @@ class Duration extends React.Component {
             .then(response => response.json())
             .then(data => {
                 this.setState({
-                    duration: data.Duration
+                    duration: data.duration
                 })
             })
             .catch(error => this.props.onError())

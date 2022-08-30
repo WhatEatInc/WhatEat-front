@@ -31,11 +31,11 @@ class Particularities extends React.Component {
     }
 
     async fetchParticularity() {
-        fetch(apiConfig.url + '/v0/recipe/getParticularity')
+        fetch(apiConfig.url + '/v0/recipe/getParticularities')
             .then(response => response.json())
             .then(data => {
                 this.setState({
-                    particularity: this.buildParticularity(data.Particularity),
+                    particularity: this.buildParticularity(data.particularities),
                 })
             })
             .catch(error => this.props.onError())
