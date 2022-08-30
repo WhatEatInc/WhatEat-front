@@ -19,19 +19,23 @@ class Particularities extends React.Component {
         this.fetchParticularity()
     }
 
+    buildParticularity(data) {
+        const particularity = []
+        for (const [value, label] of Object.entries(data)) { 
+            particularity.push({
+                'value': value,
+                'label': label
+            })
+        }
+        return particularity
+    }
+
     async fetchParticularity() {
         fetch(apiConfig.url + '/v0/recipe/getParticularity')
             .then(response => response.json())
             .then(data => {
-                const particularity = []
-                for (const [value, label] of Object.entries(data.Particularity)) { 
-                    particularity.push({
-                        'value': value,
-                        'label': label
-                    })
-                }
                 this.setState({
-                    particularity: particularity,
+                    particularity: this.buildParticularity(data.Particularity),
                 })
             })
             .catch(error => this.props.onError())
@@ -43,6 +47,7 @@ class Particularities extends React.Component {
                 <h2>Particularities</h2>
                 <Select
                 closeMenuOnSelect={false}
+                defaultValue={this.buildParticularity(this.props.particularities)}
                 components={animatedComponents}
                 isMulti
                 options={this.state.particularity}

@@ -19,18 +19,22 @@ class Cooktype extends React.Component {
         this.fetchCookType()
     }
 
+    buildCookType(data) {
+        const cookType = []
+        for (const [value, label] of Object.entries(data)) { 
+            cookType.push({
+                'value': value,
+                'label': label
+            })
+        }
+        return cookType
+    }
+
     async fetchCookType() {
         fetch(apiConfig.url + '/v0/recipe/getCookType')
             .then(response => response.json())
             .then(data => {
-                const cookType = []
-                for (const [value, label] of Object.entries(data.CookType)) { 
-                    cookType.push({
-                        'value': value,
-                        'label': label
-                    })
-                }
-                this.setState({cookType: cookType})
+                this.setState({cookType: this.buildCookType(data.CookType)})
             })
             .catch(error => this.props.onError())
     }
@@ -41,6 +45,7 @@ class Cooktype extends React.Component {
                 <h2>Favorite kitchen</h2>
                 <Select
                 closeMenuOnSelect={false}
+                defaultValue={this.buildCookType(this.props.cookTypes)}
                 components={animatedComponents}
                 isMulti
                 options={this.state.cookType}

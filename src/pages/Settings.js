@@ -51,7 +51,7 @@ class Settings extends React.Component {
         } else {
             
             const {firstname, lastname } = this.state.preferences
-            const {allergens, particularities, cookTypes, duration} = this.state.preferences.cook
+            const {allergens, particularities, cookTypes, duration, health} = this.state.preferences.cook
 
             return (
                 <>
@@ -61,7 +61,7 @@ class Settings extends React.Component {
                 <Particularities particularities={particularities} onError={this.onError} />
                 <Cooktype cookTypes={cookTypes} onError={this.onError} />
                 <Duration duration={duration} onError={this.onError} />
-                <Health/>
+                <Health health={health} onError={this.onError}/>
                 </>
         )}
     }

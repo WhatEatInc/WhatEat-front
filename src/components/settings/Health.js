@@ -6,12 +6,13 @@ class Health extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            checked: false,
+            checked: this.props.health,
         }
+        this.toggle = this.toggle.bind(this)
     }
 
-    handleTofuChange() {
-        console.log("change")
+    toggle(e) {
+        this.setState({checked: e.target.checked})
     }
 
     render() {
@@ -21,7 +22,7 @@ class Health extends React.Component {
             <Toggle
                 defaultChecked={this.state.checked}
                 icons={false}
-                onChange={this.handleTofuChange} />
+                onChange={this.toggle} />
         </>
     )}
 }
