@@ -8,8 +8,7 @@ class Login extends React.Component {
     this.state = {
       email: "",
       pass: "",
-      token: null,
-      data: ""
+      errorMessage: ""
     };
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
     this.handleChangePass = this.handleChangePass.bind(this);
@@ -33,10 +32,11 @@ class Login extends React.Component {
         fetch(apiConfig.url + "/v0/user/login", requestOptions)
           .then(response =>  response)
           .then(data => {
-            
-            console.log(data.headers.set-cookie)
+            if(!data.ok){
+              this.setState({errorMessage: data.statusText})
+            }
           })
-          .catch(error => (document.getElementById("err").innerHTML = "test"))
+          .catch(error => (this.setState({errorMessage: error.message})));
           
           event.preventDefault();
     } 
@@ -54,7 +54,8 @@ class Login extends React.Component {
                 <input type="text" value={this.state.pass} onChange={this.handleChangePass} required/>
               </label>
                 <input type="submit" value="Submit" />
-              <div id="err"></div>
+                { this.state.errorMessage &&
+                  <p className="error" > { this.state.errorMessage } </p> }
           </form>
         )
     }
