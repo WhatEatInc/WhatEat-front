@@ -19,39 +19,42 @@ class Login extends React.Component {
   handleChangePass(event)    {    this.setState({pass: event.target.value});   }
 
   handleSubmit(event) {
+    event.preventDefault();
+    // Simple POST request with a JSON body using fetch
+    const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    credentials: 'same-origin',
+    withCredentials: true,
+    body: JSON.stringify({ 
+        email: this.state.email,
+        password: this.state.pass,
+    })}
 
-        // Simple POST request with a JSON body using fetch
-        const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-            email: this.state.email,
-            password: this.state.pass,
-        })}
-
-        fetch(apiConfig.url + "/v0/user/login", requestOptions)
-          .then(response =>  response)
-          .then(data => {
-            if(!data.ok){
-              this.setState({errorMessage: data.statusText})
-            }
-          })
-          .catch(error => (this.setState({errorMessage: error.message})));
+    fetch(apiConfig.url + "/v0/user/login", requestOptions)
+      .then(Response => {
+        if(!Response.ok){
+          this.setState({errorMessage: Response.statusText})
+        }
+        return Response.json();
+      })
+      .then(json => {
+        //document.cookie = json.token
+      })
+      .catch(error => (this.setState({errorMessage: error.message})));
           
-          event.preventDefault();
-    } 
-
+  } 
 
     render() {   
         return(
           <form onSubmit={this.handleSubmit}>
               <label>
                 Email:
-                <input type="text" name="email" placeholder="put your email here" value={this.state.email} onChange={this.handleChangeEmail} required/>
+                <input type="email" name="email" placeholder="put your email here" value={this.state.email} onChange={this.handleChangeEmail} required/>
               </label>
               <label>
                 Password:
-                <input type="text" value={this.state.pass} onChange={this.handleChangePass} required/>
+                <input type="password" value={this.state.pass} onChange={this.handleChangePass} required/>
               </label>
                 <input type="submit" value="Submit" />
                 { this.state.errorMessage &&
