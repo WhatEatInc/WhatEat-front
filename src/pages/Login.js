@@ -32,7 +32,6 @@ class Login extends React.Component {
         })
         }
 
-        if(this.state.pass === this.state.confirm){
         fetch(apiConfig.url + "/v0/user/login", requestOptions)
             .then(response => {
 
@@ -41,9 +40,7 @@ class Login extends React.Component {
                 console.log(this.state.data)
             }
             })
-
         event.preventDefault();
-        }
     } 
 
 
