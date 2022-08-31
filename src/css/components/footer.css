@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
     box-shadow: rgba(0, 0, 0, 0.20) 0px -5px 30px;
-    height: calc(100% / 12);
+    height: calc(100% / 13);
 }
 
 .footer-menu {

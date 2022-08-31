@@ -14,6 +14,7 @@
 @import "./base/variables.css";
 @import "./base/layout.css";
 @import "./base/typography.css";
+@import "./base/utils.css";
 
 /**
 * Components
@@ -21,3 +22,7 @@
 @import "./components/footer.css";
 @import "./components/header.css";
 @import "./components/main.css";
+@import "./components/recipe-card.css";
+@import "./components/button.css";
+@import "./components/counter.css";
+@import "./components/ingredients.css";

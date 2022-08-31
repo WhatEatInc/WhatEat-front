@@ -1,44 +1,32 @@
 import React from "react"
-import apiConfig from "../config/api.config"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faDice } from "@fortawesome/free-solid-svg-icons"
 
+import RecipeCard from "../components/recipe-card/RecipeCard"
+import Counter from "../components/counter/Counter"
+import Button from "../components/button/Button"
+
+<<<<<<< HEAD
 class Today extends React.Component {
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            today: null,
-        }
-        this.fetchData = this.fetchData.bind(this)
-        this.onError = this.onError.bind(this)
-    }
-
-    onError() {
-        this.setState({
-            hasError: true
-        })
-    }
-
-    componentDidMount() {
-        this.setState({
-            today: this.fetchData(),
-        })
-    }
-
-    async fetchData() {
-        fetch(apiConfig.url)
-            .then(response => response.json())
-            .then(data => this.setState({
-                today: data,
-            }))
-            .catch(error => this.setState({
-                today: error,
-            }))
-    }
-
     render() {
+        const { recipe, servings, decrementServings, incrementServings, reroll } = this.props
+
         return (
-        <p>{JSON.stringify(this.state.today)}</p>
-    )}
+        <>
+            <h1 className="page-title">Today</h1>
+            <RecipeCard recipe={recipe} exportRecipe={this.props.exportRecipe}/>
+            <Counter 
+                decrementCounter={decrementServings}
+                incrementCounter={incrementServings}
+                counter={servings}
+            />
+            <Button onClick={reroll} type="primary" className="btn-full btn-big">
+                <FontAwesomeIcon icon={faDice} /> Reroll
+            </Button>
+        </>
+        )
+    }
 }
 
 export default Today
