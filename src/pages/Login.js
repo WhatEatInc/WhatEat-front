@@ -33,7 +33,8 @@ class Login extends React.Component {
         fetch(apiConfig.url + "/v0/user/login", requestOptions)
           .then(response =>  response)
           .then(data => {
-            console.log(data)
+            
+            console.log(data.headers.set-cookie)
           })
           .catch(error => (document.getElementById("err").innerHTML = "test"))
           
