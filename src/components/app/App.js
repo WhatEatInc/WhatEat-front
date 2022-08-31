@@ -10,6 +10,7 @@ import Header from '../header/Header'
 import Footer from '../footer/Footer'
 import Today from '../../pages/Today'
 import Recipe from '../../pages/Recipe'
+import Settings from '../../pages/Settings'
 
 class App extends React.Component {
 
@@ -107,7 +108,7 @@ class App extends React.Component {
                         <Route 
                             path="/settings" 
                             element={
-                                <h1>Settings</h1>
+                                <Settings />
                             }
                         />
                     </Routes>

@@ -6,7 +6,6 @@ import RecipeCard from "../components/recipe-card/RecipeCard"
 import Counter from "../components/counter/Counter"
 import Button from "../components/button/Button"
 
-<<<<<<< HEAD
 class Today extends React.Component {
 
     render() {
