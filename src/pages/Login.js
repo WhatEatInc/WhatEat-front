@@ -9,7 +9,7 @@ class Login extends React.Component {
       email: "",
       pass: "",
       token: null,
-      data: null
+      data: ""
     };
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
     this.handleChangePass = this.handleChangePass.bind(this);
@@ -29,18 +29,15 @@ class Login extends React.Component {
         body: JSON.stringify({ 
             email: this.state.email,
             password: this.state.pass,
-        })
-        }
+        })}
 
         fetch(apiConfig.url + "/v0/user/login", requestOptions)
-            .then(response => {
-
-            if(response.ok){
-                this.state.data = response.json()
-                console.log(this.state.data)
-            }
-            })
-        event.preventDefault();
+          .then(response => response.json())
+          .then(data => {
+            this.setState({token: data.token})
+            console.log(this.state.token)
+          })
+          .catch(error => (document.getElementById("err").innerHTML = "test"))
     } 
 
 
