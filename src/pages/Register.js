@@ -56,12 +56,9 @@ class Register extends React.Component {
       fetch(apiConfig.url + "/v0/user/register", requestOptions)
         .then(response => {
           
-          if(response.ok){
-            this.state.data = response.json()
-            console.log(this.state.data)
-          }
+          window.location.replace("/login");
         })
-        
+      //redirection vers le login
       event.preventDefault();
     }
     else{
@@ -115,8 +112,8 @@ function validatePassword(password){
     }
     else
     { 
-    alert('Wrong...!')
-    return false;
+      document.getElementById("err").innerHTML = "The password didn't reach the standard!";
+      return false;
     }
     } 
 
