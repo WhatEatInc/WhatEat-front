@@ -11,6 +11,7 @@ class Register extends React.Component {
       email: "",
       pass: "",
       confirm: "",
+      errorMessage: ""
     };
     this.handleChangeFName = this.handleChangeFName.bind(this);
     this.handleChangeLName = this.handleChangeLName.bind(this);
@@ -29,12 +30,11 @@ class Register extends React.Component {
 
   handleSubmit(event) {
       if(!validateEmail(this.state.email)){
-        document.getElementById("err").innerHTML = "The email is not valid!";
+        this.setState({errorMessage: "The email is not valid!"})
         return false;
       }
 
       if(!validatePassword(this.state.pass)){
-        document.getElementById("err").innerHTML = "The passwords didn't match!!";
         return false;
       }
 
@@ -52,10 +52,16 @@ class Register extends React.Component {
 
     if(this.state.pass === this.state.confirm){
       fetch(apiConfig.url + "/v0/user/register", requestOptions)
+      .then(response =>  {
+            if(!response.ok){
+              this.setState({errorMessage: response.statusText})
+            }
+          })
+          .catch(error => (this.setState({errorMessage: error.message})));
       event.preventDefault();
     }
     else{
-      document.getElementById("err").innerHTML = "The passwords didn't match!!"; 
+      this.setState({errorMessage: "The passwords didn't match!"})
       event.preventDefault();
     }
   }
@@ -85,7 +91,8 @@ class Register extends React.Component {
                 <input type="password" value={this.state.confirm} onChange={this.handleChangeConfirm} required/>
               </label>
                 <input type="submit" value="Submit" />
-              <div id="err"></div>
+                { this.state.errorMessage &&
+                  <p className="error" > { this.state.errorMessage } </p> }
           </form>
           
 )}
@@ -105,7 +112,7 @@ function validatePassword(password){
     }
     else
     { 
-      document.getElementById("err").innerHTML = "The password didn't reach the standard!";
+      this.setState({errorMessage: "The password didn't reach the standard!"})
       return false;
     }
     } 
