@@ -1,4 +1,3 @@
-
 import React from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faDice } from "@fortawesome/free-solid-svg-icons"
@@ -7,6 +6,7 @@ import RecipeCard from "../components/recipe-card/RecipeCard"
 import Counter from "../components/counter/Counter"
 import Button from "../components/button/Button"
 
+<<<<<<< HEAD
 class Today extends React.Component {
 
     render() {
