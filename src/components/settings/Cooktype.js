@@ -47,6 +47,7 @@ class Cooktype extends React.Component {
                 closeMenuOnSelect={false}
                 defaultValue={this.buildCookType(this.props.cookTypes)}
                 components={animatedComponents}
+                onChange={values => this.props.onChange(values)}
                 isMulti
                 options={this.state.cookType}
                 />

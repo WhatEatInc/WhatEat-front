@@ -40,7 +40,7 @@ class Duration extends React.Component {
                         return (
                         <div key={index}>
                             <input type="radio" id={index} name="duration" value={index}
-                                    defaultChecked={this.props.duration === parseInt(index)} />
+                                    defaultChecked={this.props.duration === parseInt(index)} onChange={(e) => this.props.onChange(e.target.value)}/>
                             <label htmlFor={index}>{this.state.duration[index]}</label>
                         </div>
                         )

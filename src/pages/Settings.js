@@ -17,6 +17,11 @@ class Settings extends React.Component {
             user: null
         }
         this.onError = this.onError.bind(this)
+        this.updateAllergens = this.updateAllergens.bind(this)
+        this.updateParticularities = this.updateParticularities.bind(this)
+        this.updateCookTypes = this.updateCookTypes.bind(this)
+        this.updateDuration = this.updateDuration.bind(this)
+        this.updateHealth = this.updateHealth.bind(this)
     }
 
     componentDidMount() {
@@ -30,6 +35,96 @@ class Settings extends React.Component {
                 this.setState({user: data})
             })
             .catch(error => this.onError())
+    }
+
+    formatObject(values) {
+        const result = {}
+        for (const allergen of values) {
+            result[allergen.label] = allergen.value
+        }
+        return result
+    }
+
+    updateAllergens(allergens) {
+        this.setState({
+            user: {
+                ...this.state.user,
+                preferences: {
+                    ...this.state.user.preferences,
+                    allergens: this.formatObject(allergens)
+                }
+            }
+        })
+    }
+
+    updateDuration(duration) {
+        console.log(duration)
+        this.setState({
+            user: {
+                ...this.state.user,
+                preferences: {
+                    ...this.state.user.preferences,
+                    duration: duration
+                }
+            }
+        })
+    }
+
+    updateParticularities(particularities) {
+        this.setState({
+            user: {
+                ...this.state.user,
+                preferences: {
+                    ...this.state.user.preferences,
+                    particularities: this.formatObject(particularities)
+                }
+            }
+        })
+    }
+
+    updateCookTypes(cookTypes) {
+        this.setState({
+            user: {
+                ...this.state.user,
+                preferences: {
+                    ...this.state.user.preferences,
+                    cookTypes: this.formatObject(cookTypes)
+                }
+            }
+        })
+    }
+
+    updateHealth(healthy) {
+        this.setState({
+            user: {
+                ...this.state.user,
+                preferences: {
+                    ...this.state.user.preferences,
+                    healthy: healthy
+                }
+            }
+        })
+    }
+
+    async savePreferences(preferences) {
+        /*
+        for (const allergen of values) {
+            preferences.allergens[allergen.label] = allergen.value
+        }
+        fetch(apiConfig.url + '/v0/user/setPreferences', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'crentials': 'include',
+                'Cookie': 'token=' + Cookies.get('token')
+            },
+            body: JSON.stringify(preferences)
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+            }).catch(error => this.onError())
+            */
     }
 
     onError() {
@@ -57,11 +152,11 @@ class Settings extends React.Component {
                 <>
                 <h1>Settings</h1>
                 <User lastname={lastname} firstname={firstname}/>
-                <Allergens allergens={allergens} onError={this.onError} />
-                <Particularities particularities={particularities} onError={this.onError} />
-                <Cooktype cookTypes={cookTypes} onError={this.onError} />
-                <Duration duration={duration} onError={this.onError} />
-                <Health health={health} onError={this.onError}/>
+                <Allergens allergens={allergens} onError={this.onError} onChange={this.updateAllergens}/>
+                <Particularities particularities={particularities} onError={this.onError} onChange={this.updateParticularities}/>
+                <Cooktype cookTypes={cookTypes} onError={this.onError} onChange={this.updateCookTypes}/>
+                <Duration duration={duration} onError={this.onError} onChange={this.updateDuration}/>
+                <Health health={health} onError={this.onError} onChange={this.updateHealth}/>
                 </>
         )}
     }

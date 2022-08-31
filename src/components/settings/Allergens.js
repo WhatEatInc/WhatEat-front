@@ -2,6 +2,7 @@ import React from "react"
 import Select from 'react-select'
 import makeAnimated from 'react-select/animated';
 import apiConfig from "../../config/api.config"
+import Cookies from 'js-cookie'
 
 const animatedComponents = makeAnimated();
 
@@ -47,6 +48,7 @@ class Allergens extends React.Component {
                 closeMenuOnSelect={false}
                 defaultValue={this.buildAllergens(this.props.allergens)}
                 components={animatedComponents}
+                onChange={values => this.props.onChange(values)}
                 isMulti
                 options={this.state.allergens}
                 />

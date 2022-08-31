@@ -49,6 +49,7 @@ class Particularities extends React.Component {
                 closeMenuOnSelect={false}
                 defaultValue={this.buildParticularity(this.props.particularities)}
                 components={animatedComponents}
+                onChange={values => this.props.onChange(values)}
                 isMulti
                 options={this.state.particularity}
                 />

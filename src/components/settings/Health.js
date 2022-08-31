@@ -13,6 +13,7 @@ class Health extends React.Component {
 
     toggle(e) {
         this.setState({checked: e.target.checked})
+        this.props.onChange(e.target.checked)
     }
 
     render() {
