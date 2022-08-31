@@ -16,7 +16,6 @@ class Login extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-
   handleChangeEmail(event)   {    this.setState({email: event.target.value});  }
   handleChangePass(event)    {    this.setState({pass: event.target.value});   }
 
@@ -32,12 +31,12 @@ class Login extends React.Component {
         })}
 
         fetch(apiConfig.url + "/v0/user/login", requestOptions)
-          .then(response => response.json())
+          .then(response =>  response)
           .then(data => {
-            this.setState({token: data.token})
-            console.log(this.state.token)
           })
           .catch(error => (document.getElementById("err").innerHTML = "test"))
+          
+          event.preventDefault();
     } 
 
 
