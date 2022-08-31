@@ -1,7 +1,8 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faDownload } from '@fortawesome/free-solid-svg-icons'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
+
 
 class RecipeCard extends React.Component {
     render() {
@@ -19,9 +20,6 @@ class RecipeCard extends React.Component {
                     <Link className="btn btn-primary" to="/recipe">
                         <FontAwesomeIcon icon={faPlus} className="btn-icon" /> Read more
                     </Link>
-                    <a className="btn btn-secondary" href={recipe.download}>
-                        <FontAwesomeIcon icon={faDownload} className="btn-icon" /> Download
-                    </a>
                 </div>
             </div>
         )

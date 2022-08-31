@@ -1,4 +1,3 @@
-
 import React from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faDice } from "@fortawesome/free-solid-svg-icons"
@@ -15,7 +14,7 @@ class Today extends React.Component {
         return (
         <>
             <h1 className="page-title">Today</h1>
-            <RecipeCard recipe={recipe} />
+            <RecipeCard recipe={recipe} exportRecipe={this.props.exportRecipe}/>
             <Counter 
                 decrementCounter={decrementServings}
                 incrementCounter={incrementServings}

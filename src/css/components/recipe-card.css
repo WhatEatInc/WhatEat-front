@@ -29,7 +29,8 @@
 
 .recipe-card-actions {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
+    padding: var(--spacing-base) var(--spacing-base);
 }
 
 .recipe-card-content > *:first-child {
@@ -37,7 +38,6 @@
 }
 
 .recipe-card-actions > * {
-    width: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
