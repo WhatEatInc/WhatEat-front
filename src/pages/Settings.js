@@ -7,6 +7,7 @@ import Duration from '../components/settings/Duration'
 import Health from '../components/settings/Health'
 import Error from '../components/error/Error'
 import apiConfig from "../config/api.config"
+import Cookies from 'js-cookie'
 
 class Settings extends React.Component {
 
@@ -55,6 +56,7 @@ class Settings extends React.Component {
                 }
             }
         })
+        this.savePreferences()
     }
 
     updateDuration(duration) {
@@ -68,6 +70,7 @@ class Settings extends React.Component {
                 }
             }
         })
+        this.savePreferences()
     }
 
     updateParticularities(particularities) {
@@ -80,6 +83,7 @@ class Settings extends React.Component {
                 }
             }
         })
+        this.savePreferences()
     }
 
     updateCookTypes(cookTypes) {
@@ -92,6 +96,7 @@ class Settings extends React.Component {
                 }
             }
         })
+        this.savePreferences()
     }
 
     updateHealth(healthy) {
@@ -104,19 +109,17 @@ class Settings extends React.Component {
                 }
             }
         })
+        this.savePreferences()
     }
 
-    async savePreferences(preferences) {
+    async savePreferences() {
+        console.log(this.state.user.preferences)
         /*
-        for (const allergen of values) {
-            preferences.allergens[allergen.label] = allergen.value
-        }
         fetch(apiConfig.url + '/v0/user/setPreferences', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'crentials': 'include',
-                'Cookie': 'token=' + Cookies.get('token')
+                'Authorization': 'Bearer ' + Cookies.get('token')
             },
             body: JSON.stringify(preferences)
         })

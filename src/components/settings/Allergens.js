@@ -2,7 +2,6 @@ import React from "react"
 import Select from 'react-select'
 import makeAnimated from 'react-select/animated';
 import apiConfig from "../../config/api.config"
-import Cookies from 'js-cookie'
 
 const animatedComponents = makeAnimated();
 
