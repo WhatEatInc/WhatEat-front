@@ -12,6 +12,12 @@ class Today extends React.Component {
         this.onError = this.onError.bind(this)
     }
 
+    onError() {
+        this.setState({
+            hasError: true
+        })
+    }
+
     componentDidMount() {
         this.setState({
             today: this.fetchData(),
