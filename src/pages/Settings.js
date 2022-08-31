@@ -4,7 +4,7 @@ import Allergens from '../components/settings/Allergens'
 import Particularities from '../components/settings/Particularities'
 import Cooktype from '../components/settings/Cooktype'
 import Duration from '../components/settings/Duration'
-import Health from '../components/settings/Health'
+import Healthy from '../components/settings/Healthy'
 import Error from '../components/error/Error'
 import apiConfig from "../config/api.config"
 import Cookies from 'js-cookie'
@@ -22,7 +22,7 @@ class Settings extends React.Component {
         this.updateParticularities = this.updateParticularities.bind(this)
         this.updateCookTypes = this.updateCookTypes.bind(this)
         this.updateDuration = this.updateDuration.bind(this)
-        this.updateHealth = this.updateHealth.bind(this)
+        this.updateHealthy = this.updateHealthy.bind(this)
     }
 
     componentDidMount() {
@@ -30,7 +30,11 @@ class Settings extends React.Component {
     }
 
     async fetchPreferences() {
-        fetch(apiConfig.url + '/v0/user/getPreferences')
+        fetch(apiConfig.url + '/v0/user/getPreferences', {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + Cookies.get('token')
+            }})
             .then(response => response.json())
             .then(data => {
                 this.setState({user: data})
@@ -47,87 +51,52 @@ class Settings extends React.Component {
     }
 
     updateAllergens(allergens) {
-        this.setState({
-            user: {
-                ...this.state.user,
-                preferences: {
-                    ...this.state.user.preferences,
-                    allergens: this.formatObject(allergens)
-                }
-            }
-        })
+        const user = {...this.state.user}
+        user.preferences.allergens = this.formatObject(allergens);
+        this.setState({user})
         this.savePreferences()
     }
 
     updateDuration(duration) {
-        console.log(duration)
-        this.setState({
-            user: {
-                ...this.state.user,
-                preferences: {
-                    ...this.state.user.preferences,
-                    duration: duration
-                }
-            }
-        })
+        const user = {...this.state.user}
+        user.preferences.duration = duration
+        this.setState({user})
         this.savePreferences()
     }
 
     updateParticularities(particularities) {
-        this.setState({
-            user: {
-                ...this.state.user,
-                preferences: {
-                    ...this.state.user.preferences,
-                    particularities: this.formatObject(particularities)
-                }
-            }
-        })
+        const user = {...this.state.user}
+        user.preferences.particularities = this.formatObject(particularities)
+        this.setState({user})
         this.savePreferences()
     }
 
     updateCookTypes(cookTypes) {
-        this.setState({
-            user: {
-                ...this.state.user,
-                preferences: {
-                    ...this.state.user.preferences,
-                    cookTypes: this.formatObject(cookTypes)
-                }
-            }
-        })
+        const user = {...this.state.user}
+        user.preferences.cookTypes = this.formatObject(cookTypes)
+        this.setState({user})
         this.savePreferences()
     }
 
-    updateHealth(healthy) {
-        this.setState({
-            user: {
-                ...this.state.user,
-                preferences: {
-                    ...this.state.user.preferences,
-                    healthy: healthy
-                }
-            }
-        })
+    updateHealthy(healthy) {
+        const user = {...this.state.user}
+        user.preferences.healthy = healthy
+        this.setState({user})
         this.savePreferences()
     }
 
     async savePreferences() {
-        console.log(this.state.user.preferences)
-        /*
         fetch(apiConfig.url + '/v0/user/setPreferences', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + Cookies.get('token')
             },
-            body: JSON.stringify(preferences)
+            body: JSON.stringify(this.state.user)
         })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data)
-            }).catch(error => this.onError())
-            */
+            .then(response => {
+              // Display success message  
+            }).catch(error => console.log(error))
     }
 
     onError() {
@@ -149,7 +118,7 @@ class Settings extends React.Component {
         } else {
 
             const {firstname, lastname } = this.state.user
-            const {allergens, particularities, cookTypes, duration, health} = this.state.user.preferences
+            const {allergens, particularities, cookTypes, duration, healthy} = this.state.user.preferences
 
             return (
                 <>
@@ -159,7 +128,7 @@ class Settings extends React.Component {
                 <Particularities particularities={particularities} onError={this.onError} onChange={this.updateParticularities}/>
                 <Cooktype cookTypes={cookTypes} onError={this.onError} onChange={this.updateCookTypes}/>
                 <Duration duration={duration} onError={this.onError} onChange={this.updateDuration}/>
-                <Health health={health} onError={this.onError} onChange={this.updateHealth}/>
+                <Healthy healthy={healthy} onError={this.onError} onChange={this.updateHealthy}/>
                 </>
         )}
     }
