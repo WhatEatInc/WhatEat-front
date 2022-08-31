@@ -55,8 +55,6 @@ class App extends React.Component {
             useCORS: true,            
         })
 
-        console.log(element)
-
         const data = canvas.toDataURL('image/png')
 
         const pdf = new jsPDF({
