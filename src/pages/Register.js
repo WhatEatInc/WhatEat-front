@@ -11,8 +11,6 @@ class Register extends React.Component {
       email: "",
       pass: "",
       confirm: "",
-      token: null,
-      data: null
     };
     this.handleChangeFName = this.handleChangeFName.bind(this);
     this.handleChangeLName = this.handleChangeLName.bind(this);
@@ -54,10 +52,6 @@ class Register extends React.Component {
 
     if(this.state.pass === this.state.confirm){
       fetch(apiConfig.url + "/v0/user/register", requestOptions)
-        .then(response => {
-          
-        })
-      window.location.replace("/login");
       event.preventDefault();
     }
     else{
@@ -80,15 +74,15 @@ class Register extends React.Component {
               </label>
               <label>
                 Email:
-                <input type="text" name="email" placeholder="put your email here" value={this.state.email} onChange={this.handleChangeEmail} required/>
+                <input type="email" name="email" placeholder="put your email here" value={this.state.email} onChange={this.handleChangeEmail} required/>
               </label>
               <label>
                 Password:
-                <input type="text" value={this.state.pass} onChange={this.handleChangePass} required/>
+                <input type="password" value={this.state.pass} onChange={this.handleChangePass} required/>
               </label>
               <label>
                 Confirm Password:
-                <input type="text" value={this.state.confirm} onChange={this.handleChangeConfirm} required/>
+                <input type="password" value={this.state.confirm} onChange={this.handleChangeConfirm} required/>
               </label>
                 <input type="submit" value="Submit" />
               <div id="err"></div>
