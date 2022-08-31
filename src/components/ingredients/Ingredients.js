@@ -2,10 +2,11 @@ import React from "react"
 
 class Ingredients extends React.Component {
     mapIngredients() {
-        return this.props.ingredients.map((ingredient, index) => {
+        const { servings, baseServing, ingredients } = this.props
+        return ingredients.map((ingredient, index) => {
             return (
                 <tr key={index + "-ingredient-" + ingredient.id} className="ingredients-table-row">
-                    <td className="ingredients-table-amount">{ingredient.amount}  {ingredient.unit}</td>
+                    <td className="ingredients-table-amount">{(ingredient.amount / baseServing) * servings}  {ingredient.unit}</td>
                     <td className="ingredients-table-name">{ingredient.name}</td>
                 </tr>
             )

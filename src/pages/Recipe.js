@@ -10,14 +10,14 @@ import Steps from "../components/steps/Steps"
 class Recipe extends React.Component {
     render() {
 
-        const { recipe } = this.props
+        const { recipe, servings } = this.props
 
         return (
             <>
                 <div id="printable-recipe">
                     <h1 className="page-title">Recipe</h1>
                     <img className="full" src={recipe.image} alt={recipe.title} />
-                    <Ingredients ingredients={recipe.ingredients} />
+                    <Ingredients servings={servings} baseServing={recipe.servings} ingredients={recipe.ingredients} />
                     <Steps steps={recipe.steps} />
                 </div>
                 <Button type="secondary" className="btn-full btn-big" onClick={this.props.exportRecipe}>
