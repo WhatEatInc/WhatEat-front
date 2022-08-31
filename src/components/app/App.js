@@ -7,6 +7,7 @@ import Header from '../header/Header'
 import Footer from '../footer/Footer'
 import Today from '../../pages/Today'
 import Recipe from '../../pages/Recipe'
+import Register from '../../pages/Register'
 
 class App extends React.Component {
 
@@ -85,6 +86,12 @@ class App extends React.Component {
                             path="/settings" 
                             element={
                                 <h1>Settings</h1>
+                            }
+                        />
+                        <Route 
+                            path="/register" 
+                            element={
+                                <Register />
                             }
                         />
                     </Routes>
