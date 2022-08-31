@@ -56,9 +56,8 @@ class Register extends React.Component {
       fetch(apiConfig.url + "/v0/user/register", requestOptions)
         .then(response => {
           
-          window.location.replace("/login");
         })
-      //redirection vers le login
+      window.location.replace("/login");
       event.preventDefault();
     }
     else{
@@ -118,4 +117,3 @@ function validatePassword(password){
     } 
 
 export default Register 
-
