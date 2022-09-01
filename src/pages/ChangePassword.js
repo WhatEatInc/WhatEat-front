@@ -54,8 +54,6 @@ class ChangePassword extends React.Component {
     })}
 
     if(this.state.pass === this.state.confirm){
-      console.log(this.state.pass)
-      console.log(this.state.oldPass)
       fetch(apiConfig.url + "/v0/user/changePassword", requestOptions)
       .then(response => {
         if(response.ok){
