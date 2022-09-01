@@ -1,5 +1,6 @@
 import React from 'react';
 import apiConfig from "../config/api.config"
+import Cookies from 'js-cookie'
 
 class Login extends React.Component {
 
@@ -39,7 +40,7 @@ class Login extends React.Component {
         return Response.json();
       })
       .then(json => {
-        //document.cookie = json.token
+        Cookies.set('token', json.token)
       })
       .catch(error => (this.setState({errorMessage: error.message})));
           
