@@ -1,5 +1,6 @@
 import React from 'react';
 import apiConfig from "../config/api.config"
+import Cookies from 'js-cookie'
 
 class ChangePassword extends React.Component {
 
@@ -44,19 +45,23 @@ class ChangePassword extends React.Component {
     // Simple POST request with a JSON body using fetch
     const requestOptions = {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+      'Content-Type': 'application/json', 
+      'Authorization': 'Bearer ' + Cookies.get('token')},
       body: JSON.stringify({ 
-        oldPass: this.state.oldPass,
-        password: this.state.pass,
+        currentPWD: this.state.oldPass,
+        newPWD: this.state.pass,
     })}
 
     if(this.state.pass === this.state.confirm){
+      console.log(this.state.pass)
+      console.log(this.state.oldPass)
       fetch(apiConfig.url + "/v0/user/changePassword", requestOptions)
       .then(response => {
-        if(!response.ok){
-          this.setState({errorMessage: response.statusText})
+        if(response.ok){
+          window.open("/settings")
         }
-
+        this.setState({errorMessage: response.statusText})
       })
       .catch(error => (this.setState({errorMessage: error.message})));
     }
