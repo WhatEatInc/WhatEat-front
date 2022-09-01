@@ -1,19 +1,18 @@
 import React from "react"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faPen } from "@fortawesome/free-solid-svg-icons"
+
+import Button from '../button/Button'
 
 class User extends React.Component {
-
-    constructor(props) {
-        super(props)
-        this.state = {
-        }
-    }
 
     render() {
         return (
             <>
-                <span>User : </span>
-                <span>{this.props.firstname + ' ' + this.props.lastname}</span>
-                <button>Modifier</button>
+                <span className="user">User : {this.props.firstname + ' ' + this.props.lastname}</span>
+                <Button type="primary" className="btn-big">
+                    <FontAwesomeIcon icon={faPen} /> Edit user settings
+                </Button>
             </>
         )
     }

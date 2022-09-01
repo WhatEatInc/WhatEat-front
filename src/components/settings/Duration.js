@@ -34,19 +34,32 @@ class Duration extends React.Component {
 
         return (
             <>
-                <h2>Duration</h2>
+                <label className="label">Duration</label>
+                <div className="duration">
                 {
                     Object.keys(this.state.duration).map((index) => {
                         return (
-                        <div key={index}>
-                            <input type="radio" id={index} name="duration" value={index}
-                                    defaultChecked={this.props.duration === parseInt(index)} onChange={(e) => this.props.onChange(e.target.value)}/>
-                            <label htmlFor={index}>{this.state.duration[index]}</label>
+                        <div key={index} className="duration-radio">
+                            <input 
+                                className="duration-radio-input"
+                                type="radio" 
+                                id={index}
+                                name="duration" 
+                                value={index}
+                                defaultChecked={this.props.duration === parseInt(index)}
+                                onChange={(e) => this.props.onChange(e.target.value)}
+                            />
+                            <label 
+                                htmlFor={index}
+                                className="duration-radio-label"
+                            >
+                                {this.state.duration[index]}
+                            </label>
                         </div>
                         )
                     })
                 }
-            
+                </div>
             </>
         )
     }

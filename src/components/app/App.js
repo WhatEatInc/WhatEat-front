@@ -27,7 +27,8 @@ class App extends React.Component {
                 servings: recipe.servings,
                 ingredients: recipe.extendedIngredients
             },
-            servings: 1
+            servings: 1,
+            isDownloading: false
         }
 
         this.decrementServings = this.decrementServings.bind(this)
@@ -53,6 +54,10 @@ class App extends React.Component {
     }
 
     async exportRecipe() {    
+        this.setState({
+            isDownloading: true
+        })
+
         const element = document.querySelector("#printable-recipe")
         const canvas = await html2canvas(element, {
             useCORS: true,            
@@ -67,6 +72,10 @@ class App extends React.Component {
 
         pdf.addImage(data, 'PNG', 0, 0, element.offsetWidth, element.offsetHeight)
         pdf.save('print.pdf')
+
+        this.setState({
+            isDownloading: false
+        })
     }
 
     render() {
@@ -103,7 +112,7 @@ class App extends React.Component {
                                     recipe={recipe}
                                     servings={servings}
                                     exportRecipe={this.exportRecipe}
-                                    ref={this.recipePrint}
+                                    isDownloading={this.state.isDownloading}
                                 />
                             }
                         />
