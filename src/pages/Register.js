@@ -1,5 +1,6 @@
 import React from 'react';
 import apiConfig from "../config/api.config"
+import { Navigate } from "react-router-dom";
 
 class Register extends React.Component {
 
@@ -74,9 +75,10 @@ class Register extends React.Component {
     if(this.state.pass === this.state.confirm){
       fetch(apiConfig.url + "/v0/user/register", requestOptions)
       .then(response =>  {
-            if(!response.ok){
-              this.setState({errorMessage: response.statusText})
+            if(response.ok){
+              return <Navigate replace to="/login" />
             }
+            this.setState({errorMessage: response.statusText})
           })
           .catch(error => (this.setState({errorMessage: error.message})));
     }
