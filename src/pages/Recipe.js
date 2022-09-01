@@ -20,7 +20,7 @@ class Recipe extends React.Component {
                     <Ingredients servings={servings} baseServing={recipe.servings} ingredients={recipe.ingredients} />
                     <Steps steps={recipe.steps} />
                 </div>
-                <Button type="secondary" className="btn-full btn-big" onClick={this.props.exportRecipe}>
+                <Button type="primary" className="btn-full btn-big" onClick={this.props.exportRecipe}>
                     <FontAwesomeIcon icon={faDownload} /> Download
                 </Button>
             </>

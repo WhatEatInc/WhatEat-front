@@ -9,8 +9,8 @@ class User extends React.Component {
     render() {
         return (
             <>
-                <span>User : {this.props.firstname + ' ' + this.props.lastname}</span>
-                <Button type="secondary" className="btn-big">
+                <span className="user">User : {this.props.firstname + ' ' + this.props.lastname}</span>
+                <Button type="primary" className="btn-big">
                     <FontAwesomeIcon icon={faPen} /> Edit user settings
                 </Button>
             </>

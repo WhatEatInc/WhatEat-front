@@ -19,11 +19,14 @@ class Healthy extends React.Component {
     render() {
         return (
         <>
-            <h2>Healthy eating</h2>
-            <Toggle
-                defaultChecked={this.state.checked}
-                icons={false}
-                onChange={this.toggle} />
+            <label className="label">Healthy</label>
+            <div className="healthy">
+                <span className="healthy-text-toggle">Would you like to eat healthy ?</span>
+                <Toggle
+                    defaultChecked={this.state.checked}
+                    icons={false}
+                    onChange={this.toggle} />
+            </div>
         </>
     )}
 }
