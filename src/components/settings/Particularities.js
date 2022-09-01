@@ -44,8 +44,9 @@ class Particularities extends React.Component {
     render() {
         return (
             <>
-                <h2>Particularities</h2>
+                <label className="label">Particularities</label>
                 <Select
+                className="multi-select"
                 closeMenuOnSelect={false}
                 defaultValue={this.buildParticularity(this.props.particularities)}
                 components={animatedComponents}

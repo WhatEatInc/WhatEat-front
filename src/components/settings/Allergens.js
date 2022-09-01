@@ -42,8 +42,9 @@ class Allergens extends React.Component {
     render() {
         return (
             <>
-                <h2>Allergens</h2>
+                <label className="label">Allergens</label>
                 <Select
+                className="multi-select"
                 closeMenuOnSelect={false}
                 defaultValue={this.buildAllergens(this.props.allergens)}
                 components={animatedComponents}

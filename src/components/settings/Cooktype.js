@@ -42,8 +42,9 @@ class Cooktype extends React.Component {
     render() {
         return (
             <>
-                <h2>Favorite kitchen</h2>
+                <label className="label">Favorite kitchen</label>
                 <Select
+                className="multi-select"
                 closeMenuOnSelect={false}
                 defaultValue={this.buildCookType(this.props.cookTypes)}
                 components={animatedComponents}

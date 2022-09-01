@@ -124,6 +124,7 @@ class Settings extends React.Component {
                 <>
                     <h1>Settings</h1>
                     <User lastname={lastname} firstname={firstname}/>
+                    <h1>Preferences</h1>
                     <Allergens allergens={allergens} onError={this.onError} onChange={this.updateAllergens}/>
                     <Particularities particularities={particularities} onError={this.onError} onChange={this.updateParticularities}/>
                     <Cooktype cookTypes={cookTypes} onError={this.onError} onChange={this.updateCookTypes}/>
