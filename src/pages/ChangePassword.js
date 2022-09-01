@@ -61,7 +61,9 @@ class ChangePassword extends React.Component {
         if(response.ok){
           window.open("/settings")
         }
-        this.setState({errorMessage: response.statusText})
+        else{
+          this.setState({errorMessage: response.statusText})
+        }
       })
       .catch(error => (this.setState({errorMessage: error.message})));
     }
