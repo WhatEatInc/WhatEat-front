@@ -25,19 +25,17 @@ class Login extends React.Component {
     const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    credentials: 'same-origin',
-    withCredentials: true,
     body: JSON.stringify({ 
         email: this.state.email,
         password: this.state.pass,
     })}
 
     fetch(apiConfig.url + "/v0/user/login", requestOptions)
-      .then(Response => {
-        if(!Response.ok){
-          this.setState({errorMessage: Response.statusText})
+      .then(response => {
+        if(!response.ok){
+          this.setState({errorMessage: response.statusText})
         }
-        return Response.json();
+        return response.json();
       })
       .then(json => {
         Cookies.set('token', json.token)
