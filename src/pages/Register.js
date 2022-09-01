@@ -1,6 +1,8 @@
 import React from 'react';
 import apiConfig from "../config/api.config"
 
+
+
 class Register extends React.Component {
 
   constructor(props) {
@@ -50,6 +52,7 @@ class Register extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+
       if(!this.validateEmail(this.state.email)){
         this.setState({errorMessage: "The email is not valid!"})
         return false;
@@ -74,9 +77,10 @@ class Register extends React.Component {
     if(this.state.pass === this.state.confirm){
       fetch(apiConfig.url + "/v0/user/register", requestOptions)
       .then(response =>  {
-            if(!response.ok){
-              this.setState({errorMessage: response.statusText})
+            if(response.ok){
+              window.open("/login")
             }
+            this.setState({errorMessage: response.statusText})
           })
           .catch(error => (this.setState({errorMessage: error.message})));
     }

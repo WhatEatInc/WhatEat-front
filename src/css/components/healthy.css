@@ -1,0 +1,9 @@
+.healthy {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.react-toggle--checked .react-toggle-track {
+    background-color: var(--color-primary) !important;
+}

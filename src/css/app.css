@@ -21,8 +21,12 @@
 */
 @import "./components/footer.css";
 @import "./components/header.css";
-@import "./components/main.css";
 @import "./components/recipe-card.css";
 @import "./components/button.css";
 @import "./components/counter.css";
 @import "./components/ingredients.css";
+@import "./components/multi-select.css";
+@import "./components/label.css";
+@import "./components/duration.css";
+@import "./components/healthy.css";
+@import "./components/settings.css";
