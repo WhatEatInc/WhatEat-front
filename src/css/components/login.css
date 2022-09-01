@@ -1,0 +1,35 @@
+.login {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+}
+
+.login-form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-input {
+    padding: var(--spacing-small) var(--spacing-base);
+}
+
+.login-form > * {
+    margin-bottom: var(--spacing-base);	
+}
+
+.login-form > *:last-child {
+    margin-bottom: 0;
+}
+
+.login-card {
+    width: 80%;
+    padding: var(--spacing-base) var(--spacing-base);
+}
+
+.login-logo {
+    width: 60%;
+    height: auto;
+}

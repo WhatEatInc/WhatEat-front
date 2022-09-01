@@ -1,19 +1,14 @@
 import React from "react"
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { Routes, Route, Navigate } from "react-router-dom"
 
 import html2canvas from 'html2canvas'
 import { jsPDF } from 'jspdf'
 
 import recipe from "../../other/default-recipe"
 
-import Header from '../header/Header'
-import Footer from '../footer/Footer'
 import Today from '../../pages/Today'
 import Recipe from '../../pages/Recipe'
-import ChangePassword from "../../pages/ChangePassword"
-import Register from '../../pages/Register'
 import Settings from '../../pages/Settings'
-import Login from "../../pages/Login"
 
 class App extends React.Component {
 
@@ -84,67 +79,38 @@ class App extends React.Component {
         const { recipe, servings } = this.state
 
         return (
-        <BrowserRouter>
-            <Header />
-                <main className="main">
-                    <Routes>
-                        <Route 
-                            path="/" 
-                            element={
-                                <h1>Root</h1>
-                            }
+            <Routes>
+                <Route 
+                    path="today" 
+                    element={
+                        <Today
+                            recipe={recipe}
+                            servings={servings}
+                            decrementServings={this.decrementServings}
+                            incrementServings={this.incrementServings}
+                            reroll={this.reroll}
                         />
-                        <Route 
-                            path="/today" 
-                            element={
-                                <Today
-                                    recipe={recipe}
-                                    servings={servings}
-                                    decrementServings={this.decrementServings}
-                                    incrementServings={this.incrementServings}
-                                    reroll={this.reroll}
-                                />
-                            }
+                    } 
+                />
+                <Route 
+                    path="recipe" 
+                    element={
+                        <Recipe
+                            recipe={recipe}
+                            servings={servings}
+                            exportRecipe={this.exportRecipe}
+                            isDownloading={this.state.isDownloading}
                         />
-                        <Route 
-                            path="/recipe" 
-                            element={
-                                <Recipe
-                                    recipe={recipe}
-                                    servings={servings}
-                                    exportRecipe={this.exportRecipe}
-                                    isDownloading={this.state.isDownloading}
-                                />
-                            }
-                        />
-                        <Route 
-                            path="/settings" 
-                            element={
-                                <Settings />
-                            }
-                        />
-                        <Route 
-                            path="/register" 
-                            element={
-                                <Register />
-                            }
-                        />
-                        <Route 
-                            path="/login" 
-                            element={
-                                <Login />
-                            }
-                        />
-                         <Route 
-                            path="/changePassword" 
-                            element={
-                            <ChangePassword />
-                            }
-                        />
-                    </Routes>
-                </main>
-            <Footer />
-        </BrowserRouter>
+                    }
+                />
+                <Route 
+                    path="/settings" 
+                    element={
+                        <Settings />
+                    }
+                />
+                <Route path="*" element={<Navigate to="/app/today" />} />
+            </Routes>
     )}
 }
 
