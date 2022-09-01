@@ -12,6 +12,7 @@ import Today from '../../pages/Today'
 import Recipe from '../../pages/Recipe'
 import Register from '../../pages/Register'
 import Settings from '../../pages/Settings'
+import Login from "../../pages/Login"
 
 class App extends React.Component {
 
@@ -116,6 +117,12 @@ class App extends React.Component {
                             path="/register" 
                             element={
                                 <Register />
+                            }
+                        />
+                        <Route 
+                            path="/login" 
+                            element={
+                                <Login />
                             }
                         />
                     </Routes>
