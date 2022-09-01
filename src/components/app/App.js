@@ -10,6 +10,7 @@ import Header from '../header/Header'
 import Footer from '../footer/Footer'
 import Today from '../../pages/Today'
 import Recipe from '../../pages/Recipe'
+import ChangePassword from "../../pages/ChangePassword"
 import Register from '../../pages/Register'
 import Settings from '../../pages/Settings'
 import Login from "../../pages/Login"
@@ -132,6 +133,12 @@ class App extends React.Component {
                             path="/login" 
                             element={
                                 <Login />
+                            }
+                        />
+                         <Route 
+                            path="/changePassword" 
+                            element={
+                            <ChangePassword />
                             }
                         />
                     </Routes>
