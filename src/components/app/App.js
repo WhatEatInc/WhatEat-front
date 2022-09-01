@@ -10,6 +10,7 @@ import Header from '../header/Header'
 import Footer from '../footer/Footer'
 import Today from '../../pages/Today'
 import Recipe from '../../pages/Recipe'
+import Register from '../../pages/Register'
 import Settings from '../../pages/Settings'
 
 class App extends React.Component {
@@ -109,6 +110,12 @@ class App extends React.Component {
                             path="/settings" 
                             element={
                                 <Settings />
+                            }
+                        />
+                        <Route 
+                            path="/register" 
+                            element={
+                                <Register />
                             }
                         />
                     </Routes>

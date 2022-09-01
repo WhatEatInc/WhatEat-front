@@ -11,7 +11,10 @@ class Register extends React.Component {
       email: "",
       pass: "",
       confirm: "",
+      errorMessage: ""
     };
+    this.validateEmail = this.validateEmail.bind(this);
+    this.validatePassword = this.validatePassword.bind(this);
     this.handleChangeFName = this.handleChangeFName.bind(this);
     this.handleChangeLName = this.handleChangeLName.bind(this);
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
@@ -19,6 +22,24 @@ class Register extends React.Component {
     this.handleChangeConfirm = this.handleChangeConfirm.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  validateEmail(email) {
+    const res = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return res.test(String(email).toLowerCase());
+  }
+  
+  validatePassword(password){
+    var decimal=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,55}$/;
+    if(password.match(decimal)) 
+    {
+      return true;
+    }
+    else
+    { 
+      this.setState({errorMessage: "The password didn't reach the standard!"})
+      return false;
+    }
+  } 
 
 
   handleChangeFName(event)   {    this.setState({fName: event.target.value});  }
@@ -28,13 +49,13 @@ class Register extends React.Component {
   handleChangeConfirm(event) {    this.setState({confirm: event.target.value});}
 
   handleSubmit(event) {
-      if(!validateEmail(this.state.email)){
-        document.getElementById("err").innerHTML = "The email is not valid!";
+    event.preventDefault();
+      if(!this.validateEmail(this.state.email)){
+        this.setState({errorMessage: "The email is not valid!"})
         return false;
       }
 
-      if(!validatePassword(this.state.pass)){
-        document.getElementById("err").innerHTML = "The passwords didn't match!!";
+      if(!this.validatePassword(this.state.pass)){
         return false;
       }
 
@@ -52,11 +73,15 @@ class Register extends React.Component {
 
     if(this.state.pass === this.state.confirm){
       fetch(apiConfig.url + "/v0/user/register", requestOptions)
-      event.preventDefault();
+      .then(response =>  {
+            if(!response.ok){
+              this.setState({errorMessage: response.statusText})
+            }
+          })
+          .catch(error => (this.setState({errorMessage: error.message})));
     }
     else{
-      document.getElementById("err").innerHTML = "The passwords didn't match!!"; 
-      event.preventDefault();
+      this.setState({errorMessage: "The passwords didn't match!"})
     }
   }
 
@@ -85,29 +110,11 @@ class Register extends React.Component {
                 <input type="password" value={this.state.confirm} onChange={this.handleChangeConfirm} required/>
               </label>
                 <input type="submit" value="Submit" />
-              <div id="err"></div>
+                { this.state.errorMessage &&
+                  <p className="error" > { this.state.errorMessage } </p> }
           </form>
           
 )}
 }
-
-
-function validateEmail(email) {
-  const res = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return res.test(String(email).toLowerCase());
-}
-
-function validatePassword(password){
-  var decimal=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,55}$/;
-  if(password.match(decimal)) 
-  {
-    return true;
-    }
-    else
-    { 
-      document.getElementById("err").innerHTML = "The password didn't reach the standard!";
-      return false;
-    }
-    } 
 
 export default Register 
