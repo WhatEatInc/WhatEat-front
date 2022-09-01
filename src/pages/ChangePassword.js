@@ -38,53 +38,57 @@ class ChangePassword extends React.Component {
     event.preventDefault();
 
     if(!this.validatePassword(this.state.pass)){
-        this.setState({errorMessage: "The passwords didn't match!"})
-        return false;
+      return false;
     }
 
     // Simple POST request with a JSON body using fetch
     const requestOptions = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ 
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ 
         oldPass: this.state.oldPass,
         password: this.state.pass,
     })}
 
-    fetch(apiConfig.url + "/v0/user/changePassword", requestOptions)
-    .then(Response => {
-      if(!Response.ok){
-        this.setState({errorMessage: Response.statusText})
-      }
+    if(this.state.pass === this.state.confirm){
+      fetch(apiConfig.url + "/v0/user/changePassword", requestOptions)
+      .then(response => {
+        if(!response.ok){
+          this.setState({errorMessage: response.statusText})
+        }
 
-    })
+      })
       .catch(error => (this.setState({errorMessage: error.message})));
+    }
+    else{
+      this.setState({errorMessage: "The passwords didn't match!"})
+    }
+    
     
   } 
 
 
-    render() {   
-        return(
-          <form onSubmit={this.handleSubmit}>
-              <label>
-                Actual Password:
-                <input type="password" value={this.state.oldPass} onChange={this.handleChangeOldPass} required/>
-              </label>
-              <label>
-                New Password:
-                <input type="password" value={this.state.pass} onChange={this.handleChangePass} required/>
-              </label>
-              <label>
-                Confirm Password:
-                <input type="password" value={this.state.confirm} onChange={this.handleChangeConfirm} required/>
-              </label>
-                <input type="submit" value="Submit" />
-                { this.state.errorMessage &&
-                  <p className="error" > { this.state.errorMessage } </p> }
-          </form>
-        )
-    }
+  render() {   
+      return(
+        <form onSubmit={this.handleSubmit}>
+            <label>
+              Actual Password:
+              <input type="password" value={this.state.oldPass} onChange={this.handleChangeOldPass} required/>
+            </label>
+            <label>
+              New Password:
+              <input type="password" value={this.state.pass} onChange={this.handleChangePass} required/>
+            </label>
+            <label>
+              Confirm Password:
+              <input type="password" value={this.state.confirm} onChange={this.handleChangeConfirm} required/>
+            </label>
+              <input type="submit" value="Submit" />
+              { this.state.errorMessage &&
+                <p className="error" > { this.state.errorMessage } </p> }
+        </form>
+      )
+  }
 } 
-
 
 export default ChangePassword
