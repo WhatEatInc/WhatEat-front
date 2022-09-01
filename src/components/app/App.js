@@ -1,6 +1,9 @@
 import React from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 
+import html2canvas from 'html2canvas'
+import { jsPDF } from 'jspdf'
+
 import recipe from "../../other/default-recipe"
 
 import Header from '../header/Header'
@@ -8,6 +11,9 @@ import Footer from '../footer/Footer'
 import Today from '../../pages/Today'
 import Recipe from '../../pages/Recipe'
 import ChangePassword from "../../pages/ChangePassword"
+import Register from '../../pages/Register'
+import Settings from '../../pages/Settings'
+import Login from "../../pages/Login"
 
 class App extends React.Component {
 
@@ -28,6 +34,7 @@ class App extends React.Component {
         this.decrementServings = this.decrementServings.bind(this)
         this.incrementServings = this.incrementServings.bind(this)
         this.reroll = this.reroll.bind(this)
+        this.exportRecipe = this.exportRecipe.bind(this)
     }
 
     decrementServings() {
@@ -44,6 +51,23 @@ class App extends React.Component {
 
     reroll() {
         alert("Reroll")
+    }
+
+    async exportRecipe() {    
+        const element = document.querySelector("#printable-recipe")
+        const canvas = await html2canvas(element, {
+            useCORS: true,            
+        })
+
+        const data = canvas.toDataURL('image/png')
+
+        const pdf = new jsPDF({
+            format: [element.offsetWidth, element.offsetHeight],
+            compress: false
+        })
+
+        pdf.addImage(data, 'PNG', 0, 0, element.offsetWidth, element.offsetHeight)
+        pdf.save('print.pdf')
     }
 
     render() {
@@ -79,13 +103,27 @@ class App extends React.Component {
                                 <Recipe
                                     recipe={recipe}
                                     servings={servings}
+                                    exportRecipe={this.exportRecipe}
+                                    ref={this.recipePrint}
                                 />
                             }
                         />
                         <Route 
                             path="/settings" 
                             element={
-                                <h1>Settings</h1>
+                                <Settings />
+                            }
+                        />
+                        <Route 
+                            path="/register" 
+                            element={
+                                <Register />
+                            }
+                        />
+                        <Route 
+                            path="/login" 
+                            element={
+                                <Login />
                             }
                         />
                          <Route 
