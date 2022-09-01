@@ -1,6 +1,7 @@
 import React from 'react';
 import apiConfig from "../config/api.config"
-import { Navigate } from "react-router-dom";
+
+
 
 class Register extends React.Component {
 
@@ -51,6 +52,7 @@ class Register extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+
       if(!this.validateEmail(this.state.email)){
         this.setState({errorMessage: "The email is not valid!"})
         return false;
@@ -76,7 +78,7 @@ class Register extends React.Component {
       fetch(apiConfig.url + "/v0/user/register", requestOptions)
       .then(response =>  {
             if(response.ok){
-              return <Navigate replace to="/login" />
+              window.open("/login")
             }
             this.setState({errorMessage: response.statusText})
           })
