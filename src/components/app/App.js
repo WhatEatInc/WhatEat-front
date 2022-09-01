@@ -1,18 +1,14 @@
 import React from "react"
-import { BrowserRouter, Routes, Route, Outlet, Navigate, Location } from "react-router-dom"
+import { Routes, Route, Navigate } from "react-router-dom"
 
 import html2canvas from 'html2canvas'
 import { jsPDF } from 'jspdf'
 
 import recipe from "../../other/default-recipe"
 
-import Header from '../header/Header'
-import Footer from '../footer/Footer'
 import Today from '../../pages/Today'
 import Recipe from '../../pages/Recipe'
-import Register from '../../pages/Register'
 import Settings from '../../pages/Settings'
-import Login from "../../pages/Login"
 
 class App extends React.Component {
 
