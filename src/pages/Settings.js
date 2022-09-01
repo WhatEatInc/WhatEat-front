@@ -122,13 +122,13 @@ class Settings extends React.Component {
 
             return (
                 <>
-                <h1>Settings</h1>
-                <User lastname={lastname} firstname={firstname}/>
-                <Allergens allergens={allergens} onError={this.onError} onChange={this.updateAllergens}/>
-                <Particularities particularities={particularities} onError={this.onError} onChange={this.updateParticularities}/>
-                <Cooktype cookTypes={cookTypes} onError={this.onError} onChange={this.updateCookTypes}/>
-                <Duration duration={duration} onError={this.onError} onChange={this.updateDuration}/>
-                <Healthy healthy={healthy} onError={this.onError} onChange={this.updateHealthy}/>
+                    <h1>Settings</h1>
+                    <User lastname={lastname} firstname={firstname}/>
+                    <Allergens allergens={allergens} onError={this.onError} onChange={this.updateAllergens}/>
+                    <Particularities particularities={particularities} onError={this.onError} onChange={this.updateParticularities}/>
+                    <Cooktype cookTypes={cookTypes} onError={this.onError} onChange={this.updateCookTypes}/>
+                    <Duration duration={duration} onError={this.onError} onChange={this.updateDuration}/>
+                    <Healthy healthy={healthy} onError={this.onError} onChange={this.updateHealthy}/>
                 </>
         )}
     }
