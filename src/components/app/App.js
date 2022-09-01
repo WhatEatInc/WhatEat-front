@@ -7,7 +7,7 @@ import Header from '../header/Header'
 import Footer from '../footer/Footer'
 import Today from '../../pages/Today'
 import Recipe from '../../pages/Recipe'
-import Password from "../../pages/Password"
+import ChangePassword from "../../pages/ChangePassword"
 
 class App extends React.Component {
 
@@ -88,12 +88,12 @@ class App extends React.Component {
                                 <h1>Settings</h1>
                             }
                         />
-                        {/* <Route 
-                            path="/password" 
+                         <Route 
+                            path="/changePassword" 
                             element={
-                            <Password />
+                            <ChangePassword />
                             }
-                        /> */}
+                        />
                     </Routes>
                 </main>
             <Footer />
