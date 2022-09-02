@@ -12,7 +12,7 @@ import Login from './pages/Login'
 import Cookies from 'js-cookie'
 
 function hasCookie() {
-    return Cookies.get('token') !== "undefined"
+    return Cookies.get('token') === undefined || Cookies.get('token') === "undefined"
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
