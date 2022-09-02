@@ -41,17 +41,23 @@ class Login extends React.Component {
 
     fetch(apiConfig.url + "/v0/user/login", requestOptions)
       .then(response => {
-        if (!response.ok) {
-          this.setState({ errorMessage: response.statusText })
+        if (response.ok) {
+          return response.json()
+        } else {
+          throw new Error("Invalid credentials")
         }
-        return response.json();
       })
-      .then(json => {
-        Cookies.set('token', json.token)
-        this.setState({ isLoggedIn: true })
+      .then(data => {
+        Cookies.set("token", data.token)
+        this.setState({
+          isLoggedIn: true
+        })
       })
-      .catch(error => (this.setState({ errorMessage: error.message })));
-
+      .catch(error => {
+        this.setState({
+          errorMessage: error.message
+        })
+      })
   }
 
   render() {
