@@ -17,8 +17,8 @@ class Login extends React.Component {
       email: "",
       pass: "",
       errorMessage: "",
-      isLoggedIn: false,
     };
+
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
     this.handleChangePass = this.handleChangePass.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -49,7 +49,7 @@ class Login extends React.Component {
       })
       .then(data => {
         Cookies.set("token", data.token)
-        this.setState({ isLoggedIn: true })
+        this.props.handleLogin(true)
       })
       .catch(error => {
         this.setState({
@@ -60,7 +60,7 @@ class Login extends React.Component {
 
   render() {
     return (
-      this.state.isLoggedIn ?
+      this.props.isLoggedIn ?
         <Navigate to="/app/today" /> :
         <main className='main-site'>
           <section className="login">
