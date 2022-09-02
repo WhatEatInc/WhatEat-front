@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Cookies from 'js-cookie'
 
 import Login from "../../pages/Login"
+import Register from "../../pages/Register"
 import App from "./App"
 import Header from '../header/Header'
 import Footer from '../footer/Footer'
@@ -13,9 +14,11 @@ class WhatEat extends React.Component {
         super(props)
         this.state = {
             isLoggedIn: false,
+            hasRegistered: false,
         }
 
         this.handleLogin = this.handleLogin.bind(this)
+        this.handleRegister = this.handleRegister.bind(this)
     }
 
     componentDidMount() {
@@ -31,6 +34,14 @@ class WhatEat extends React.Component {
         if (success) {
             this.setState({
                 isLoggedIn: true,
+            })
+        }
+    }
+
+    handleRegister(success) {
+        if (success) {
+            this.setState({
+                hasRegistered: true,
             })
         }
     }
@@ -53,6 +64,15 @@ class WhatEat extends React.Component {
                                 isLoggedIn={this.state.isLoggedIn}
                             />
                         } 
+                    />
+                    <Route
+                        path="/register"
+                        element={
+                            <Register
+                                hasRegistered={this.state.hasRegistered}
+                                handleRegister={this.handleRegister}
+                            />
+                        }
                     />
                     <Route 
                         path="app/*" 
