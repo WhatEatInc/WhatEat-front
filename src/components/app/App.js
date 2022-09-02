@@ -106,7 +106,9 @@ class App extends React.Component {
                 <Route 
                     path="/settings" 
                     element={
-                        <Settings />
+                        <Settings
+                            handleLogout={this.props.handleLogout}
+                        />
                     }
                 />
                 <Route path="*" element={<Navigate to="/app/today" />} />

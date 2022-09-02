@@ -18,6 +18,7 @@ class WhatEat extends React.Component {
         }
 
         this.handleLogin = this.handleLogin.bind(this)
+        this.handleLogout = this.handleLogout.bind(this)
         this.handleRegister = this.handleRegister.bind(this)
     }
 
@@ -36,6 +37,13 @@ class WhatEat extends React.Component {
                 isLoggedIn: true,
             })
         }
+    }
+
+    handleLogout() {
+        Cookies.remove("token")
+        this.setState({
+            isLoggedIn: false,
+        })
     }
 
     handleRegister(success) {
@@ -82,7 +90,9 @@ class WhatEat extends React.Component {
                             <>
                                 <Header />
                                 <main className='main'>
-                                    <App />
+                                    <App
+                                        handleLogout={this.handleLogout}
+                                    />
                                 </main>
                                 <Footer />
                             </>
