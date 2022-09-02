@@ -1,4 +1,8 @@
 import React from "react"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons"
+import Cookies from 'js-cookie'
+
 import User from '../components/settings/User'
 import Allergens from '../components/settings/Allergens'
 import Particularities from '../components/settings/Particularities'
@@ -6,8 +10,9 @@ import Cooktype from '../components/settings/Cooktype'
 import Duration from '../components/settings/Duration'
 import Healthy from '../components/settings/Healthy'
 import Error from '../components/error/Error'
+import Button from '../components/button/Button'
+
 import apiConfig from "../config/api.config"
-import Cookies from 'js-cookie'
 
 class Settings extends React.Component {
 
@@ -130,6 +135,9 @@ class Settings extends React.Component {
                     <Cooktype cookTypes={cookTypes} onError={this.onError} onChange={this.updateCookTypes}/>
                     <Duration duration={duration} onError={this.onError} onChange={this.updateDuration}/>
                     <Healthy healthy={healthy} onError={this.onError} onChange={this.updateHealthy}/>
+                    <Button type="primary" className="btn-full btn-big" onClick={this.props.handleLogout}>
+                        <FontAwesomeIcon icon={faRightFromBracket} /> Logout
+                    </Button>
                 </>
         )}
     }
