@@ -81,12 +81,12 @@ class Register extends React.Component {
       fetch(apiConfig.url + "/v0/user/register", requestOptions)
         .then(response => {
           if (response.ok) {
-            return response.json()
+            return true
           } else {
             throw new Error('Something went wrong ...')
           }
         })
-        .then(data => {
+        .then(status => {
           this.props.handleRegister(true)
         })
         .catch(error => (this.setState({ errorMessage: error.message })))
