@@ -53,3 +53,7 @@ body, html {
 .main-site {
     height: 100%;
 }
+
+.main-site > * {
+    padding: var(--spacing-base);
+}

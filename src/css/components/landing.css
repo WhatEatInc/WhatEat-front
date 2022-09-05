@@ -1,0 +1,35 @@
+.landing {
+    height: calc(100vh - calc(100% / 13));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.landing > * {
+    margin-bottom: var(--spacing-base);
+}
+
+.landing > *:last-child {
+    margin-bottom: 0;
+}
+
+.landing-buttons > * {
+    margin-bottom: var(--spacing-large);
+}
+
+.landing-buttons > *:last-child {
+    margin-bottom: 0;
+}
+
+.landing-logo {
+    width: 70%
+}
+
+.landing-buttons {
+    width: 100%;
+}
+
+.landing-card {
+    width: 90%;
+}

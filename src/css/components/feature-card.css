@@ -1,0 +1,9 @@
+.feature-card {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: var(--spacing-base);
+    border-radius: 10px;
+}
+
+.feature-card-title {
+    color: var(--color-primary);
+}
