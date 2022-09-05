@@ -50,7 +50,6 @@ class Particularities extends React.Component {
                 defaultValue={this.buildParticularity(this.props.particularities)}
                 components={animatedComponents}
                 onChange={values => this.props.onChange(values)}
-                isMulti
                 options={this.state.particularity}
                 />
             </>
