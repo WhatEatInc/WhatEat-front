@@ -31,4 +31,9 @@
 @import "./components/healthy.css";
 @import "./components/settings.css";
 @import "./components/login.css";
+@import "./components/landing.css";
+@import "./components/feature-card.css";
+@import "./components/features.css";
+@import "./components/privacy.css";
+@import "./components/main-footer.css";
 @import "./components/recipe.css";

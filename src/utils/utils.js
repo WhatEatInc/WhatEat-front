@@ -1,5 +1,5 @@
 function removeHtmlTags(str) {
-    return str.replace(/<[^>]*>?/gm, '');
+  return str.replace(/<[^>]*>?/gm, '');
 }
 
 const utils = {

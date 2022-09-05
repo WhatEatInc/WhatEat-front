@@ -3,8 +3,11 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 
 import Cookies from 'js-cookie'
 
+import exampleRecipes from '../../utils/exempleRecipe'
+
 import Login from "../../pages/Login"
 import Register from "../../pages/Register"
+import Landing from "../../pages/Landing"
 import App from "./App"
 import Header from '../header/Header'
 import Footer from '../footer/Footer'
@@ -54,6 +57,11 @@ class WhatEat extends React.Component {
         }
     }
 
+    getExampleRecipe() {
+        const randomRecipe = Math.floor(Math.random() * exampleRecipes.length)
+        return exampleRecipes[randomRecipe]
+    }
+
     render() {
         return (
             <BrowserRouter>
@@ -61,7 +69,9 @@ class WhatEat extends React.Component {
                     <Route 
                         index 
                         element={
-                            <h1>Home</h1>
+                            <Landing
+                                recipe={this.getExampleRecipe()}
+                            />
                         } 
                     />
                     <Route 
