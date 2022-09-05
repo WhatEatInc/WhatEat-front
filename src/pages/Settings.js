@@ -71,7 +71,7 @@ class Settings extends React.Component {
 
     updateParticularities(particularities) {
         const user = {...this.state.user}
-        user.preferences.particularities = this.formatObject(particularities)
+        user.preferences.particularities = particularities
         this.setState({user})
         this.savePreferences()
     }
