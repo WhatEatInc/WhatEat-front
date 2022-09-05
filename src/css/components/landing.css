@@ -14,7 +14,7 @@
     margin-bottom: 0;
 }
 
-.landing-buttons > * {
+.landing-buttons > a > * {
     margin-bottom: var(--spacing-large);
 }
 

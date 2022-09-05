@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "react-router-dom"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUser, faPaperPlane, faCutlery, faSnowflake, faCalendar } from "@fortawesome/free-solid-svg-icons"
@@ -26,13 +27,17 @@ class Landing extends React.Component {
                             </div>
                         </div>
                         <div className="landing-buttons">
-                            <Button type="primary" className="btn-full btn-big">
-                                <FontAwesomeIcon icon={faUser} /> Login
-                            </Button>
+                            <Link to="/login">
+                                <Button type="primary" className="btn-full btn-big">
+                                    <FontAwesomeIcon icon={faUser} /> Login
+                                </Button>
+                            </Link>
 
-                            <Button type="secondary" className="btn-full btn-big">
-                                <FontAwesomeIcon icon={faPaperPlane} /> Register
-                            </Button>
+                            <Link to="/register">
+                                <Button type="secondary" className="btn-full btn-big">
+                                    <FontAwesomeIcon icon={faPaperPlane} /> Register
+                                </Button>
+                            </Link>
                         </div>
                     </section>
                     <section className="features">
@@ -56,9 +61,11 @@ class Landing extends React.Component {
                             subtitle="Plan your week in advance"
                             description="You only go to your favorite hypermarket once a week and you don’t know what buying? We have the solution for you! With WhatEat Week, we can give a complete week of recipes selected by our app! Stop Buying processed food!"
                         />
-                        <Button type="primary" className="btn-full btn-big">
-                            <FontAwesomeIcon icon={faUser} /> Register
-                        </Button>
+                        <Link to="/register">
+                            <Button type="primary" className="btn-full btn-big">
+                                <FontAwesomeIcon icon={faPaperPlane} /> Register
+                            </Button>
+                        </Link>
                     </section>
                     <section className="presentation">
                         <h2 className="page-title">Who are we ?</h2>
@@ -87,7 +94,6 @@ class Landing extends React.Component {
                 </main>
                 <footer className="main-footer">
                     <p className="main-footer-text">WhatEat © {new Date().getFullYear()}</p>
-                    
                 </footer>
             </>
         )
