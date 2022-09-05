@@ -9,12 +9,15 @@ import App from "./App"
 import Header from '../header/Header'
 import Footer from '../footer/Footer'
 
+import apiConfig from "../../config/api.config"
+
 class WhatEat extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             isLoggedIn: false,
             hasRegistered: false,
+            isAuth: false
         }
 
         this.handleLogin = this.handleLogin.bind(this)
@@ -23,13 +26,37 @@ class WhatEat extends React.Component {
     }
 
     componentDidMount() {
-        const token = Cookies.get("token")
-        if (token !== undefined && token !== "undefined") {
-            this.setState({
-                isLoggedIn: true,
-            })
-        }
+        //this.authGuard()
     }
+
+    // function to guard the component for private access
+    authGuard() {
+        // Simple POST request with a JSON body using fetch
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json', 
+            'Authorization': 'Bearer ' + Cookies.get('token')},
+        }
+    
+        fetch(apiConfig.url + "/v0/user/test", requestOptions)
+        .then(response => {
+            if(response.ok){
+                this.setState({
+                    isAuth: true,
+                })
+                return true
+            }
+            else{
+                Cookies.remove('token')
+                this.setState({
+                    isAuth: false,
+                })
+                return false
+        }})
+        .catch(error => (this.setState({errorMessage: error.message})));
+    }
+
 
     handleLogin(success) {
         if (success) {
@@ -45,6 +72,8 @@ class WhatEat extends React.Component {
             isLoggedIn: false,
         })
     }
+
+
 
     handleRegister(success) {
         if (success) {
@@ -79,13 +108,13 @@ class WhatEat extends React.Component {
                             <Register
                                 hasRegistered={this.state.hasRegistered}
                                 handleRegister={this.handleRegister}
-                            />
+                            /> 
                         }
                     />
                     <Route 
                         path="app/*" 
                         element={
-                            !this.state.isLoggedIn ? 
+                            !this.state.isAuth ?
                             <Navigate to="/login" /> :
                             <>
                                 <Header />
@@ -95,8 +124,8 @@ class WhatEat extends React.Component {
                                     />
                                 </main>
                                 <Footer />
-                            </>
-                        } 
+                            </> 
+                        }
                     />
                     <Route 
                         path="*" 
