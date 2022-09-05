@@ -4,20 +4,21 @@ import React from "react"
 class Steps extends React.Component {
 
     mapSteps() {
-        return this.props.steps.map((step, index) => {
-            return (
-                <div key={index + "-step"} className="steps-step">
-                    <h3  className="page-title">Step {step.number}</h3>
-                    <p>{step.step}</p>
-                </div>
-            )
+        return this.props.steps.map((parts, indexPart) => {
+            return parts.steps.map((step, indexStep) => {
+                return (
+                    <div key={indexPart + indexStep + "-step"} className="steps-step">
+                        <h3  className="page-title">Step {indexPart + 1}.{step.number}</h3>
+                        <p>{step.step}</p>
+                    </div>
+                )
+            })
         })
     }
 
     render() {
         return (
             <div className="steps">
-                <h2 className="page-title">Steps</h2>
                 {this.mapSteps()}
             </div>
         )

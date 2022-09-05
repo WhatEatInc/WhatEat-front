@@ -33,7 +33,7 @@ class Recipe extends React.Component {
         return (
             <>
                 <div id="printable-recipe">
-                    <h1 className="page-title">Recipe</h1>
+                    <h1 className="page-title">{recipe.title}</h1>
                     <img className="full" src={recipe.image} alt={recipe.title} />
                     <Ingredients servings={servings} baseServing={recipe.servings} ingredients={recipe.ingredients} />
                     <Steps steps={recipe.steps} />
