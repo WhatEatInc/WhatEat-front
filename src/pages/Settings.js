@@ -99,9 +99,9 @@ class Settings extends React.Component {
             },
             body: JSON.stringify(this.state.user)
         })
-            .then(response => {
-              // Display success message  
-            }).catch(error => console.log(error))
+        .then(response => {
+            // Display success message  
+        }).catch(error => console.log(error))
     }
 
     onError() {
