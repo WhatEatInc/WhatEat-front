@@ -20,12 +20,12 @@ function Footer() {
                             </NavLink>
                         </li>
                         <li className='footer-item'>
-                            <NavLink to='/today' className={getClassName}>
+                            <NavLink to='/app/today' className={getClassName}>
                                 <FontAwesomeIcon icon={faUtensils} />
                             </NavLink>
                         </li>
                         <li className='footer-item'>
-                            <NavLink to='/settings' className={getClassName}>
+                            <NavLink to='/app/settings' className={getClassName}>
                                 <FontAwesomeIcon icon={faUser} />
                             </NavLink>
                         </li>

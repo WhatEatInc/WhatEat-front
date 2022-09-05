@@ -42,10 +42,21 @@ class Particularities extends React.Component {
     }
 
     render() {
+        const styles = {
+            valueContainer: (styles) => ({
+                ...styles,
+                '& div:first-of-type': {
+                    width: 'fit-content !important'
+                }
+            })
+        };
+
         return (
             <>
-                <h2>Particularities</h2>
+                <label className="label">Particularities</label>
                 <Select
+                styles={styles}
+                className="multi-select"
                 closeMenuOnSelect={false}
                 defaultValue={this.buildParticularity(this.props.particularities)}
                 components={animatedComponents}

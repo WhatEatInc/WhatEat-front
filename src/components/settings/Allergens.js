@@ -40,10 +40,21 @@ class Allergens extends React.Component {
     }
 
     render() {
+        const styles = {
+            valueContainer: (styles) => ({
+                ...styles,
+                '& div:first-of-type': {
+                    width: 'fit-content !important'
+                }
+            })
+        };
+
         return (
             <>
-                <h2>Allergens</h2>
+                <label className="label">Allergens</label>
                 <Select
+                styles={styles}
+                className="multi-select"
                 closeMenuOnSelect={false}
                 defaultValue={this.buildAllergens(this.props.allergens)}
                 components={animatedComponents}

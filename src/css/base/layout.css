@@ -10,12 +10,22 @@ body, html {
     display: flex;
     flex-direction: column;
     height: 100%;
+    align-items: center;
+}
+
+#root > * {
+    width: 100%;
 }
 
 .main {
     overflow-y: scroll;
     overflow-x: hidden;
     padding: var(--spacing-base);
+    height: calc(11 * (100% / 13));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 500px;
 }
 
 .main::-webkit-scrollbar {
@@ -29,4 +39,20 @@ body, html {
 
 .page-title {
     text-align: center;
+}
+
+.main > * {
+    margin-bottom: var(--spacing-base);
+}
+
+.main > *:last-child {
+    margin-bottom: 0;
+}
+
+.main-site {
+    max-width: 500px;
+}
+
+.main-site > * {
+    padding: var(--spacing-base);
 }

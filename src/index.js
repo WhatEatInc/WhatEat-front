@@ -1,7 +1,9 @@
 import ReactDOM from 'react-dom/client'
-import App from './components/app/App'
+
 import './css/app.css'
 import "react-toggle/style.css"
 
+import WhatEat from './components/app/WhatEat'
+
 const root = ReactDOM.createRoot(document.getElementById('root'))
-root.render(<App />)
+root.render(<WhatEat />)

@@ -17,7 +17,7 @@ class RecipeCard extends React.Component {
                     <p>{recipe.summary.slice(0, 200)}...</p>
                 </div>
                 <div className="recipe-card-actions">
-                    <Link className="btn btn-primary" to="/recipe">
+                    <Link className="btn btn-primary" to="/app/recipe">
                         <FontAwesomeIcon icon={faPlus} className="btn-icon" /> Read more
                     </Link>
                 </div>

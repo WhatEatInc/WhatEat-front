@@ -1,0 +1,7 @@
+.label {
+    width: 100%;
+    text-align: left;
+    margin-bottom: var(--spacing-small);
+    margin-left: var(--spacing-small);
+    font-size: 1.2em;
+}

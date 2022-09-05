@@ -1,0 +1,11 @@
+.features > * {
+    margin-bottom: var(--spacing-base);
+}
+
+.features > *:last-child {
+    margin-bottom: 0;
+}
+
+.features {
+    background-color: var(--color-background);
+}

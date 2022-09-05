@@ -1,0 +1,7 @@
+.multi-select {
+    width: 100%;
+}
+
+.multi-select * {
+    border-color: var(--color-light-gray);
+}
