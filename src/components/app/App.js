@@ -42,13 +42,13 @@ class App extends React.Component {
             if (response.ok) {
                 return response.json()
             } else {
-                throw new Error("Invalid credentials")
+                throw new Error("Error while fetching recipe")
             }
         })
         .then(data => {
             data.summary = utils.removeHtmlTags(data.summary)
             this.setState({ recipe: data })
-        }).catch(error => console.log(error))
+        }).catch(error => alert(error))
     }
 
     decrementServings() {
@@ -76,14 +76,14 @@ class App extends React.Component {
             if (response.ok) {
                 this.setState({ isRerolling: false })
                 return response.json()
-              } else {
-                throw new Error("Invalid credentials")
-              }
+            } else {
+                throw new Error("Error while rerolling")
+            }
         })
         .then(data => {
             data.summary = utils.removeHtmlTags(data.summary)
             this.setState({ recipe: data })
-        }).catch(error => console.log(error))
+        }).catch(error => alert(error))
     }
 
     async exportRecipe() {    
