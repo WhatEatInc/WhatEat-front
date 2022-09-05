@@ -57,7 +57,6 @@ class Particularities extends React.Component {
                 <Select
                 styles={styles}
                 className="multi-select"
-                closeMenuOnSelect={false}
                 defaultValue={this.buildParticularity(this.props.particularities)}
                 components={animatedComponents}
                 onChange={values => this.props.onChange(values)}
