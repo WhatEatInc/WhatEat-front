@@ -1,0 +1,7 @@
+#printable-recipe > * {
+    margin-bottom: var(--spacing-base);
+}
+
+#printable-recipe > *:last-child {
+    margin-bottom: 0;
+}
