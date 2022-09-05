@@ -4,33 +4,51 @@ import { Routes, Route, Navigate } from "react-router-dom"
 import html2canvas from 'html2canvas'
 import { jsPDF } from 'jspdf'
 
-import recipe from "../../other/default-recipe"
-
 import Today from '../../pages/Today'
 import Recipe from '../../pages/Recipe'
 import Settings from '../../pages/Settings'
+
+import apiConfig from "../../config/api.config"
+import Cookies from 'js-cookie'
+
+import utils from "../../utils/utils"
 
 class App extends React.Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            recipe: {
-                title: recipe.title,
-                summary: recipe.summary,
-                image: recipe.image,
-                steps: recipe.analyzedInstructions[0].steps,
-                servings: recipe.servings,
-                ingredients: recipe.extendedIngredients
-            },
+            recipe: null,
             servings: 1,
-            isDownloading: false
+            isDownloading: false,
+            isRerolling: false
         }
 
         this.decrementServings = this.decrementServings.bind(this)
         this.incrementServings = this.incrementServings.bind(this)
         this.reroll = this.reroll.bind(this)
         this.exportRecipe = this.exportRecipe.bind(this)
+    }
+
+    componentDidMount() {
+        fetch(apiConfig.url + '/v0/recipe/get', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + Cookies.get('token')
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json()
+            } else {
+                throw new Error("Error while fetching recipe")
+            }
+        })
+        .then(data => {
+            data.summary = utils.removeHtmlTags(data.summary)
+            this.setState({ recipe: data })
+        }).catch(error => alert(error))
     }
 
     decrementServings() {
@@ -46,7 +64,26 @@ class App extends React.Component {
     }
 
     reroll() {
-        alert("Reroll")
+        this.setState({ isRerolling: true })
+        fetch(apiConfig.url + '/v0/recipe/reroll', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + Cookies.get('token')
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                this.setState({ isRerolling: false })
+                return response.json()
+            } else {
+                throw new Error("Error while rerolling")
+            }
+        })
+        .then(data => {
+            data.summary = utils.removeHtmlTags(data.summary)
+            this.setState({ recipe: data })
+        }).catch(error => alert(error))
     }
 
     async exportRecipe() {    
@@ -78,6 +115,10 @@ class App extends React.Component {
 
         const { recipe, servings } = this.state
 
+        if(this.state.recipe === null) {
+            return
+        }
+
         return (
             <Routes>
                 <Route 
@@ -89,6 +130,7 @@ class App extends React.Component {
                             decrementServings={this.decrementServings}
                             incrementServings={this.incrementServings}
                             reroll={this.reroll}
+                            isRerolling={this.state.isRerolling}
                         />
                     } 
                 />
