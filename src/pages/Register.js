@@ -7,6 +7,8 @@ import apiConfig from "../config/api.config"
 import Logo from "../images/logo-gradient.png"
 import Button from '../components/button/Button'
 
+import Cookies from 'js-cookie'
+
 class Register extends React.Component {
 
   constructor(props) {
@@ -17,8 +19,10 @@ class Register extends React.Component {
       email: "",
       pass: "",
       confirm: "",
-      errorMessage: ""
+      errorMessage: "",
+      isLoggedIn: false
     }
+
 
     this.validateEmail = this.validateEmail.bind(this)
     this.validatePassword = this.validatePassword.bind(this)
@@ -45,6 +49,39 @@ class Register extends React.Component {
       return false
     }
   }
+
+  componentDidMount() {
+    this.authGuard()
+}
+
+// function to guard the component for private access
+authGuard() {
+    // Simple POST request with a JSON body using fetch
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json', 
+        'Authorization': 'Bearer ' + Cookies.get('token')},
+    }
+
+    fetch(apiConfig.url + "/v0/user/test", requestOptions)
+    .then(response => {
+        if(response.ok){
+            this.setState({
+                isLoggedIn: true,
+            })
+            return true
+        }
+        else{
+            Cookies.remove('token')
+            this.setState({
+                isLoggedIn: false,
+            })
+            return false
+    }})
+    .catch(error => (this.setState({errorMessage: error.message})));
+}
+
 
 
   handleChangeFName(event) { this.setState({ fName: event.target.value }) }
@@ -99,6 +136,8 @@ class Register extends React.Component {
 
   render() {
     return (
+      this.props.isLoggedIn ?
+        <Navigate to="/app/today" /> :
       this.props.hasRegistered ?
         <Navigate to="/login" /> :
         <main className="main-site">

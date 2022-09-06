@@ -1,6 +1,7 @@
 import React from 'react';
 import apiConfig from "../config/api.config"
 import Cookies from 'js-cookie'
+import { Navigate } from 'react-router-dom'
 
 class ChangePassword extends React.Component {
 
@@ -9,7 +10,8 @@ class ChangePassword extends React.Component {
     this.state = {
       oldPass: "",
       pass: "",
-      confirm: ""
+      confirm: "",
+      isLoggedIn: false
     };
     this.handleChangeOldPass = this.handleChangeOldPass.bind(this);
     this.handleChangePass = this.handleChangePass.bind(this);
@@ -30,6 +32,37 @@ class ChangePassword extends React.Component {
     }
   } 
 
+  componentDidMount() {
+    this.authGuard()
+}
+
+// function to guard the component for private access
+authGuard() {
+    // Simple POST request with a JSON body using fetch
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json', 
+        'Authorization': 'Bearer ' + Cookies.get('token')},
+    }
+
+    fetch(apiConfig.url + "/v0/user/test", requestOptions)
+    .then(response => {
+        if(response.ok){
+            this.setState({
+                isLoggedIn: true,
+            })
+            return true
+        }
+        else{
+            Cookies.remove('token')
+            this.setState({
+                isLoggedIn: false,
+            })
+            return false
+    }})
+    .catch(error => (this.setState({errorMessage: error.message})));
+}
 
   handleChangeOldPass(event)   {    this.setState({oldPass: event.target.value});  }
   handleChangePass(event)    {    this.setState({pass: event.target.value});   }
@@ -75,6 +108,8 @@ class ChangePassword extends React.Component {
 
   render() {   
       return(
+        this.props.isLoggedIn ?
+        <Navigate to="/app/today" /> :
         <form onSubmit={this.handleSubmit}>
             <label>
               Actual Password:

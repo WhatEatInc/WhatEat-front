@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate  } from 'react-router-dom'
 
 import Cookies from 'js-cookie'
 
@@ -26,7 +26,7 @@ class WhatEat extends React.Component {
     }
 
     componentDidMount() {
-        //this.authGuard()
+        this.authGuard()
     }
 
     // function to guard the component for private access
@@ -43,14 +43,14 @@ class WhatEat extends React.Component {
         .then(response => {
             if(response.ok){
                 this.setState({
-                    isAuth: true,
+                    isLoggedIn: true,
                 })
                 return true
             }
             else{
                 Cookies.remove('token')
                 this.setState({
-                    isAuth: false,
+                    isLoggedIn: false,
                 })
                 return false
         }})
@@ -108,19 +108,21 @@ class WhatEat extends React.Component {
                             <Register
                                 hasRegistered={this.state.hasRegistered}
                                 handleRegister={this.handleRegister}
+                                isLoggedIn={this.state.isLoggedIn}
                             /> 
                         }
                     />
                     <Route 
                         path="app/*" 
                         element={
-                            !this.state.isAuth ?
+                            !this.state.isLoggedIn ?
                             <Navigate to="/login" /> :
                             <>
                                 <Header />
                                 <main className='main'>
                                     <App
                                         handleLogout={this.handleLogout}
+                                        isLoggedIn={this.state.isLoggedIn}
                                     />
                                 </main>
                                 <Footer />

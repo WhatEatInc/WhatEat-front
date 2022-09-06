@@ -10,6 +10,9 @@ import Today from '../../pages/Today'
 import Recipe from '../../pages/Recipe'
 import Settings from '../../pages/Settings'
 
+import Cookies from 'js-cookie'
+import apiConfig from "../../config/api.config"
+
 class App extends React.Component {
 
     constructor(props) {
@@ -24,7 +27,8 @@ class App extends React.Component {
                 ingredients: recipe.extendedIngredients
             },
             servings: 1,
-            isDownloading: false
+            isDownloading: false,
+            isLoggedIn: false
         }
 
         this.decrementServings = this.decrementServings.bind(this)
@@ -49,6 +53,38 @@ class App extends React.Component {
         alert("Reroll")
     }
 
+    componentDidMount() {
+        this.authGuard()
+    }
+
+    // function to guard the component for private access
+    authGuard() {
+        // Simple POST request with a JSON body using fetch
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json', 
+            'Authorization': 'Bearer ' + Cookies.get('token')},
+        }
+    
+        fetch(apiConfig.url + "/v0/user/test", requestOptions)
+        .then(response => {
+            if(response.ok){
+                this.setState({
+                    isLoggedIn: true,
+                })
+                return true
+            }
+            else{
+                Cookies.remove('token')
+                this.setState({
+                    isLoggedIn: false,
+                })
+                return false
+        }})
+        .catch(error => (this.setState({errorMessage: error.message})));
+    }
+
     async exportRecipe() {    
         this.setState({
             isDownloading: true
@@ -56,7 +92,7 @@ class App extends React.Component {
 
         const element = document.querySelector("#printable-recipe")
         const canvas = await html2canvas(element, {
-            useCORS: true,            
+            useCORS: true,
         })
 
         const data = canvas.toDataURL('image/png')
@@ -79,6 +115,8 @@ class App extends React.Component {
         const { recipe, servings } = this.state
 
         return (
+        !this.props.isLoggedIn ?
+        <Navigate to="/login" /> :
             <Routes>
                 <Route 
                     path="today" 
