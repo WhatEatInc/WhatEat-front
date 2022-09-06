@@ -12,6 +12,7 @@ import apiConfig from "../../config/api.config"
 import Cookies from 'js-cookie'
 
 import utils from "../../utils/utils"
+import ChangePassword from "../../pages/ChangePassword"
 
 class App extends React.Component {
 
@@ -146,14 +147,27 @@ class App extends React.Component {
                     }
                 />
                 <Route 
-                    path="/settings" 
+                    path="settings" 
                     element={
                         <Settings
                             handleLogout={this.props.handleLogout}
                         />
                     }
                 />
-                <Route path="*" element={<Navigate to="/app/today" />} />
+                <Route 
+                    path="edit"
+                    element={
+                        <ChangePassword />
+                    }
+                />
+                <Route 
+                    path="*" 
+                    element={
+                        <Navigate 
+                            to="/app/today" 
+                        />
+                    }
+                />
             </Routes>
     )}
 }

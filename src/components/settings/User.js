@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPen } from "@fortawesome/free-solid-svg-icons"
 
@@ -10,9 +11,11 @@ class User extends React.Component {
         return (
             <>
                 <span className="user">User : {this.props.firstname + ' ' + this.props.lastname}</span>
-                <Button type="primary" className="btn-big">
-                    <FontAwesomeIcon icon={faPen} /> Edit user settings
-                </Button>
+                <Link to="/app/edit">
+                    <Button type="primary" className="btn-big">
+                        <FontAwesomeIcon icon={faPen} /> Edit user settings
+                    </Button>
+                </Link>
             </>
         )
     }
