@@ -84,7 +84,6 @@ class ChangePassword extends React.Component {
         this.state.hasChanged ?
         <Navigate to="/app/settings" /> :
       <>
-        <p>{JSON.stringify(this.state)}</p>
         <h1 className="page-title">Change Password</h1>
         <form className='login-form' onSubmit={this.handleSubmit}>
           <div className="login-form-group">
