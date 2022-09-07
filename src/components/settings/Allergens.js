@@ -40,6 +40,7 @@ class Allergens extends React.Component {
     }
 
     render() {
+        // fix react-select bug when displaying only one value
         const styles = {
             valueContainer: (styles) => ({
                 ...styles,
