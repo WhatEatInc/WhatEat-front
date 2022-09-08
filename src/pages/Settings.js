@@ -50,7 +50,7 @@ class Settings extends React.Component {
     formatObject(values) {
         const result = {}
         for (const allergen of values) {
-            result[allergen.label] = allergen.value
+            result[allergen.value] = allergen.label
         }
         return result
     }
@@ -71,7 +71,7 @@ class Settings extends React.Component {
 
     updateParticularities(particularities) {
         const user = {...this.state.user}
-        user.preferences.particularities = particularities
+        user.preferences.particularities = this.formatObject([particularities])
         this.setState({user})
         this.savePreferences()
     }
